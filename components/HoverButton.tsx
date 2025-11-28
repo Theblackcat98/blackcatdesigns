@@ -38,7 +38,7 @@ export default function HoverButton({
         target={target}
         rel={rel}
         className={`inline-block transition-colors ${className}`}
-        style={{ backgroundColor: bgColor, ...style }}
+        style={{ backgroundColor: bgColor, borderRadius: 'var(--radius-md)', ...style }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -51,7 +51,7 @@ export default function HoverButton({
     <button
       onClick={onClick}
       className={`inline-block transition-colors ${className}`}
-      style={{ backgroundColor: bgColor, ...style }}
+      style={{ backgroundColor: bgColor, borderRadius: 'var(--radius-md)', ...style }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

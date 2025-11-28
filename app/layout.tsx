@@ -16,15 +16,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <body className="flex flex-col min-h-screen" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
-        <header className="border-b" style={{ borderColor: 'var(--bg-border)' }}>
-          <nav className="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+        <header className="sticky top-0 z-50 border-b backdrop-blur-sm" style={{ borderColor: 'var(--bg-border)', backgroundColor: 'rgba(40, 40, 40, 0.9)' }}>
+          <nav className="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center flex-wrap gap-4 md:gap-0 md:flex-nowrap">
             <div className="flex flex-col">
               <a href="/" className="text-2xl font-bold transition-colors" style={{ color: 'var(--accent)' }}>
                 BlackCatDesigns
               </a>
               <p className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>Cultivating Aesthetic Transformations</p>
             </div>
-            <div className="space-x-6">
+            <div className="flex space-x-4 md:space-x-6 text-sm md:text-base">
               <NavLink href="/">Home</NavLink>
               <NavLink href="/projects">Projects</NavLink>
               <NavLink href="/blog">Blog</NavLink>
