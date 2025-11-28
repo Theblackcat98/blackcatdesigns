@@ -97,16 +97,24 @@ export default function Home() {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((project) => (
-            <Link
-              key={project.slug}
-              href={`/projects/${project.slug}`}
-              className="group block border rounded-lg overflow-hidden transition-all hover:shadow-lg hover:shadow-accent/10"
-              style={{ 
-                borderColor: 'var(--bg-border)', 
-                backgroundColor: 'var(--bg-secondary)'
-              }}
-            >
+           {projects.map((project) => (
+             <Link
+               key={project.slug}
+               href={`/projects/${project.slug}`}
+               className="group block border rounded-lg overflow-hidden transition-all"
+               style={{ 
+                 borderColor: 'var(--bg-border)', 
+                 backgroundColor: 'var(--bg-secondary)'
+               }}
+               onMouseEnter={(e) => {
+                 e.currentTarget.style.borderColor = 'var(--accent)';
+                 e.currentTarget.style.boxShadow = `0 10px 15px -3px rgba(255, 168, 156, 0.2)`;
+               }}
+               onMouseLeave={(e) => {
+                 e.currentTarget.style.borderColor = 'var(--bg-border)';
+                 e.currentTarget.style.boxShadow = 'none';
+               }}
+             >
               {/* Project Image */}
               {project.image && (
                 <div className="relative aspect-video bg-gray-800 overflow-hidden">
@@ -168,16 +176,24 @@ export default function Home() {
         
         {latestPosts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {latestPosts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group block p-6 border rounded-lg transition-all hover:shadow-lg"
-                style={{ 
-                  borderColor: 'var(--bg-border)', 
-                  backgroundColor: 'var(--bg-secondary)'
-                }}
-              >
+             {latestPosts.map((post) => (
+               <Link
+                 key={post.slug}
+                 href={`/blog/${post.slug}`}
+                 className="group block p-6 border rounded-lg transition-all"
+                 style={{ 
+                   borderColor: 'var(--bg-border)', 
+                   backgroundColor: 'var(--bg-secondary)'
+                 }}
+                 onMouseEnter={(e) => {
+                   e.currentTarget.style.borderColor = 'var(--accent)';
+                   e.currentTarget.style.boxShadow = `0 10px 15px -3px rgba(255, 168, 156, 0.2)`;
+                 }}
+                 onMouseLeave={(e) => {
+                   e.currentTarget.style.borderColor = 'var(--bg-border)';
+                   e.currentTarget.style.boxShadow = 'none';
+                 }}
+               >
                 <time className="text-sm" style={{ color: 'var(--text-muted)' }}>
                   {new Date(post.date).toLocaleDateString('en-US', {
                     month: 'short',
