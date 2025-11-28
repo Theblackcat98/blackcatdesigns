@@ -1,8 +1,16 @@
 import Link from 'next/link'
 import { getAllPosts } from '@/lib/posts'
+import BlogFilters from '@/components/BlogFilters'
 
 export default function BlogPage() {
   const posts = getAllPosts()
+
+  // Get all unique categories from posts
+  const allCategories = Array.from(
+    new Set(
+      posts.flatMap((post) => post.tags || [])
+    )
+  ).sort()
 
   return (
     <div className="space-y-8">
@@ -13,66 +21,7 @@ export default function BlogPage() {
         </p>
       </div>
 
-      {posts.length === 0 ? (
-        <p className="text-gray-400 py-12 text-center">
-          No blog posts yet. Check back soon!
-        </p>
-      ) : (
-        <div className="space-y-6">
-          {posts.map((post) => (
-            <article
-              key={post.slug}
-              className="border border-gray-800 rounded-lg p-6 bg-gray-900/50 hover:border-[#FFA89C] hover:shadow-lg hover:shadow-[#FFA89C]/20 transition"
-            >
-              <Link
-                href={`/blog/${post.slug}`}
-                className="group"
-              >
-                <h2 className="text-2xl font-semibold mb-2 text-gray-100 group-hover:text-[#FFB8A3] transition">
-                  {post.title}
-                </h2>
-              </Link>
-
-              <div className="flex items-center justify-between mb-3">
-                <time className="text-sm text-gray-500">
-                  {new Date(post.date).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  })}
-                </time>
-                {post.author && (
-                  <span className="text-sm text-gray-500">by {post.author}</span>
-                )}
-              </div>
-
-              {post.description && (
-                <p className="text-gray-400 mb-4">{post.description}</p>
-              )}
-
-              {post.tags && post.tags.length > 0 && (
-                <div className="flex gap-2 flex-wrap">
-                  {post.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="bg-gray-800 text-[#FFB8A3] text-xs px-3 py-1 rounded border border-gray-700"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-
-              <Link
-                href={`/blog/${post.slug}`}
-                className="mt-4 inline-block text-[#FFA89C] hover:text-[#FFB8A3] font-medium transition-colors"
-              >
-                Read more →
-              </Link>
-            </article>
-          ))}
-        </div>
-      )}
+      <BlogFilters posts={posts} allCategories={allCategories} />
     </div>
   )
 }
