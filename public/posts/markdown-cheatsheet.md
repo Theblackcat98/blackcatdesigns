@@ -3,22 +3,21 @@ title: "Markdown Cheat Sheet"
 description: "A cheat sheet to show all Markdown styles and features"
 date: "2025-11-26"
 author: "You"
-tags: ["writing", "development", "markdownguide"]
+tags: ["writing", "development", "markdown"]
 published: true
 ---
-
 
 # Markdown Cheat Sheet
 
 Thanks for visiting [The Markdown Guide](https://www.markdownguide.org)!
 
-This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It canâ€™t cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax/) and [extended syntax](https://www.markdownguide.org/extended-syntax/).
+This Markdown cheat sheet provides a quick overview of all the Markdown syntax elements. It can't cover every edge case, so if you need more information about any of these elements, refer to the reference guides for [basic syntax](https://www.markdownguide.org/basic-syntax/) and [extended syntax](https://www.markdownguide.org/extended-syntax/).
 
 ## Basic Syntax
 
-These are the elements outlined in John Gruberâ€™s original design document. All Markdown applications support these elements.
+These are the elements outlined in John Gruber's original design document. All Markdown applications support these elements.
 
-### Heading
+### Headings
 
 # H1
 ## H2
@@ -77,28 +76,13 @@ These elements extend the basic syntax by adding additional features. Not all Ma
 
 ### Fenced Code Block
 
-```
+```json
 {
   "firstName": "John",
   "lastName": "Smith",
   "age": 25
 }
 ```
-
-### Footnote
-
-Here's a sentence with a footnote. [^1]
-
-[^1]: This is the footnote.
-
-### Heading ID
-
-### My Great Heading {#custom-id}
-
-### Definition List
-
-term
-: definition
 
 ### Strikethrough
 
@@ -109,12 +93,6 @@ term
 - [x] Write the press release
 - [ ] Update the website
 - [ ] Contact the media
-
-### Emoji
-
-That is so funny! :joy:
-
-(See also [Copying and Pasting Emoji](https://www.markdownguide.org/extended-syntax/#copying-and-pasting-emoji))
 
 ### Highlight
 

@@ -35,7 +35,7 @@ No test suite currently configured. Add with `npm install -D jest @testing-libra
 
 **TypeScript:** Strict mode. Use `async` for markdown/file operations. Type React props with `React.ReactNode`, interfaces for metadata.
 
-**Markdown Posts:** Create `.md` files in `/public/posts/` with frontmatter. Frontmatter is parsed as JavaScript object, markdown rendered to HTML with `remark-html`.
+**Markdown Posts:** Create `.md` files in `/public/posts/` with frontmatter. Full markdown support via remark with GFM (tables, strikethrough, task lists), line breaks, and HTML rendering. Supports: headings, bold/italic, code blocks, lists (ordered/unordered), blockquotes, links, images, tables, strikethrough, task lists, line breaks.
 
 **Styling:** TailwindCSS only (no CSS modules). Global styles in `app/globals.css`. Responsive with `md:` breakpoint.
 

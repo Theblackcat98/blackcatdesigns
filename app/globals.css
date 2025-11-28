@@ -96,11 +96,11 @@ a {
 }
 
 .prose ol {
-  @apply ml-6 mb-4;
+  @apply ml-6 mb-4 list-decimal;
 }
 
 .prose ol li {
-  @apply mb-2 text-gray-300;
+  @apply mb-2 text-gray-300 ml-2;
 }
 
 /* Blockquotes - styled with accent color and background */
@@ -129,15 +129,92 @@ article {
   @apply bg-gray-800 border border-gray-700;
 }
 
-/* Tables and other elements */
+/* Tables */
 .prose table {
-  @apply border-collapse border border-gray-700;
+  @apply w-full border-collapse my-6;
+}
+
+.prose table thead {
+  @apply bg-gray-800;
 }
 
 .prose table th {
-  @apply bg-gray-800 border-gray-700;
+  @apply border border-gray-700 px-4 py-2 text-left text-gray-200 font-semibold;
 }
 
 .prose table td {
-  @apply border-gray-700;
+  @apply border border-gray-700 px-4 py-2 text-gray-300;
+}
+
+.prose table tbody tr:nth-child(even) {
+  @apply bg-gray-900/50;
+}
+
+/* Strikethrough */
+.prose s,
+.prose del {
+  @apply text-gray-500 line-through;
+}
+
+/* Highlight/Mark */
+.prose mark {
+  @apply bg-yellow-900/30 text-yellow-100 px-1 rounded;
+}
+
+/* Task lists */
+.prose input[type="checkbox"] {
+  @apply mr-2 cursor-pointer accent-[#FFA89C];
+}
+
+.prose input[type="checkbox"]:checked {
+  @apply bg-[#FFA89C] border-[#FFA89C];
+}
+
+.prose li input[type="checkbox"] ~ * {
+  @apply inline;
+}
+
+.prose input[type="checkbox"]:checked ~ * {
+  @apply line-through text-gray-500;
+}
+
+/* Subscript and Superscript */
+.prose sub {
+  @apply text-sm align-sub;
+}
+
+.prose sup {
+  @apply text-sm align-super;
+}
+
+/* Horizontal rule */
+.prose hr {
+  @apply my-6 border-gray-800;
+}
+
+/* Images */
+.prose img {
+  @apply rounded-lg my-6 max-w-full h-auto;
+}
+
+/* Footnotes */
+.prose .footnotes {
+  @apply border-t border-gray-800 mt-8 pt-4 text-sm text-gray-400;
+}
+
+.prose .footnotes ol {
+  @apply ml-4;
+}
+
+.prose .footnotes li {
+  @apply mb-2;
+}
+
+/* Definition list */
+.prose dt {
+  @apply font-semibold text-gray-200 mt-4;
+}
+
+.prose dd {
+  @apply ml-4 text-gray-400 mb-3;
 }
