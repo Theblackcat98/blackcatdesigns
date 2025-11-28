@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --accent: #FFA89C;
+    --accent-light: #FFE5DC;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @apply bg-gray-950 text-gray-100 transition-colors;
+}
+
+/* Dark mode backgrounds */
+header {
+  @apply border-gray-800;
+}
+
+footer {
+  @apply border-gray-800 bg-gray-900/50;
+}
+
+/* Links - Peachy orange accent */
+a {
+  @apply text-[#FFA89C] hover:text-[#FFB8A3] transition-colors;
+}
+
+/* Markdown styles */
+.prose {
+  @apply max-w-none;
+}
+
+.prose h1 {
+  @apply text-4xl font-bold mt-8 mb-4 text-gray-100;
+}
+
+.prose h2 {
+  @apply text-3xl font-bold mt-6 mb-3 text-gray-100;
+}
+
+.prose h3 {
+  @apply text-2xl font-semibold mt-5 mb-2 text-gray-100;
+}
+
+.prose p {
+  @apply mb-4 leading-relaxed text-gray-300;
+}
+
+.prose a {
+  @apply text-[#FFA89C] hover:text-[#FFB8A3] underline transition-colors;
+}
+
+/* Inline code */
+.prose code {
+  @apply bg-gray-800 text-[#FFB8A3] px-2 py-1 rounded font-mono text-sm border border-gray-700;
+}
+
+/* Code blocks */
+.prose pre {
+  @apply bg-gray-900 border border-gray-800 text-gray-100 p-4 rounded-lg overflow-x-auto mb-4 shadow-lg;
+}
+
+.prose pre code {
+  @apply bg-none p-0 text-inherit;
+}
+
+/* Lists - with custom styling */
+.prose ul {
+  @apply ml-6 mb-4 list-none;
+}
+
+.prose ul li {
+  @apply mb-2 relative pl-4;
+}
+
+.prose ul li:before {
+  content: '•';
+  @apply absolute left-0 text-[#FFA89C] font-bold;
+}
+
+.prose ol {
+  @apply ml-6 mb-4;
+}
+
+.prose ol li {
+  @apply mb-2 text-gray-300;
+}
+
+/* Blockquotes - styled with accent color and background */
+.prose blockquote {
+  @apply border-l-4 border-[#FFA89C] pl-4 my-4 text-gray-300;
+  background-color: rgba(255, 168, 156, 0.08);
+  @apply py-3 pr-4 rounded-r;
+}
+
+/* Article cards and borders */
+article {
+  @apply border-gray-800;
+}
+
+.border-gray-200 {
+  @apply border-gray-800;
+}
+
+/* Buttons with accent color */
+.btn-accent {
+  @apply bg-[#FFA89C] text-gray-950 hover:bg-[#FFB8A3] transition-colors font-medium;
+}
+
+/* Tags */
+.prose-tags {
+  @apply bg-gray-800 border border-gray-700;
+}
+
+/* Tables and other elements */
+.prose table {
+  @apply border-collapse border border-gray-700;
+}
+
+.prose table th {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.prose table td {
+  @apply border-gray-700;
+}
