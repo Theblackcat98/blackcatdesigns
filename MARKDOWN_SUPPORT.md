@@ -127,19 +127,58 @@ All markdown elements use the `.prose` class for styling. Key style definitions:
 
 ---
 
+## Custom Markdown Extensions
+
+These features are implemented via custom post-processing in `/lib/markdown.ts`:
+
+### Subscript
+```markdown
+H~2~O
+```
+**Rendered as:** H<sub>2</sub>O
+
+### Superscript
+```markdown
+X^2^
+```
+**Rendered as:** X<sup>2</sup>
+
+### Highlight/Mark
+```markdown
+==highlighted text==
+```
+**Rendered as:** Yellow-tinted background, styled with `<mark>` tag
+
+### Emoji
+```markdown
+:joy: :rocket: :star: :heart: :thumbsup: :fire: :tada: :bug: :bulb: :computer: :books: :check_mark: :x:
+```
+**Rendered as:** Unicode emojis
+
+Supported emojis:
+- `:joy:` → 😄
+- `:rocket:` → 🚀
+- `:star:` → ⭐
+- `:heart:` → ❤️
+- `:thumbsup:` → 👍
+- `:fire:` → 🔥
+- `:tada:` → 🎉
+- `:bug:` → 🐛
+- `:bulb:` → 💡
+- `:computer:` → 💻
+- `:books:` → 📚
+- `:check_mark:` → ✅
+- `:x:` → ❌
+
 ## Not Currently Supported
 
 The following extended markdown features are not yet implemented:
 
 - Footnotes `[^1]`
-- Subscript `H~2~O`
-- Superscript `X^2^`
-- Emoji shortcodes `:joy:`
-- Highlight/Mark `==highlighted==`
 - Definition lists
 - HTML-specific syntax
 
-These could be added by installing additional remark plugins or custom processing.
+These could be added in the future if needed.
 
 ---
 

@@ -158,7 +158,12 @@ article {
 
 /* Highlight/Mark */
 .prose mark {
-  @apply bg-yellow-900/30 text-yellow-100 px-1 rounded;
+  @apply bg-yellow-900/30 text-yellow-100 px-1.5 py-0.5 rounded;
+}
+
+/* Emoji */
+.prose em-emoji {
+  @apply inline-block;
 }
 
 /* Task lists */

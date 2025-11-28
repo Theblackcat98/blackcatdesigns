@@ -105,3 +105,21 @@ H~2~O
 ### Superscript
 
 X^2^
+
+### Highlight
+
+I need to highlight these ==very important words==.
+
+### Emoji
+
+That is so funny! :joy:
+
+Check out these emojis: :rocket: :star: :heart: :thumbsup: :fire: :tada:
+
+### Water Formula
+
+The chemical formula for water is H~2~O
+
+### Math Expression
+
+Einstein's famous equation: E=MC^2^
