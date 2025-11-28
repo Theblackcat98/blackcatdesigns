@@ -84,6 +84,12 @@ These elements extend the basic syntax by adding additional features. Not all Ma
 }
 ```
 
+```md
+# test
+
+## h2
+```
+
 ### Strikethrough
 
 ~~The world is flat.~~

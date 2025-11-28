@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import HoverButton from '@/components/HoverButton'
 
 export default function Home() {
   const projects = [
@@ -22,34 +23,45 @@ export default function Home() {
     <div className="space-y-12">
       {/* Hero Section */}
       <section className="py-12 text-center">
-        <h1 className="text-5xl font-bold mb-4 text-gray-100">Welcome to my Portfolio</h1>
-        <p className="text-xl text-gray-400 mb-8">
+        <h1 className="text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>Welcome to my Portfolio</h1>
+        <p className="text-xl mb-8" style={{ color: 'var(--text-secondary)' }}>
           Full-stack developer passionate about building beautiful and functional applications
         </p>
-        <Link
+        <HoverButton
           href="/blog"
-          className="inline-block bg-[#FFA89C] text-gray-950 px-8 py-3 rounded-lg hover:bg-[#FFB8A3] font-medium transition-colors"
+          className="px-8 py-3 font-medium"
+          style={{ color: 'var(--bg-primary)' }}
         >
           Read My Blog
-        </Link>
+        </HoverButton>
       </section>
 
       {/* Featured Projects */}
       <section>
-        <h2 className="text-3xl font-bold mb-8 text-gray-100">Featured Projects</h2>
+        <h2 className="text-3xl font-bold mb-8" style={{ color: 'var(--text-primary)' }}>Featured Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project) => (
             <div
               key={project.id}
-              className="border border-gray-800 rounded-lg p-6 hover:border-[#FFA89C] bg-gray-900/50 hover:shadow-lg hover:shadow-[#FFA89C]/20 transition"
+              className="border rounded-lg p-6 transition group hover:shadow-lg hover:shadow-accent/20"
+              style={{ 
+                borderColor: 'var(--bg-border)', 
+                backgroundColor: 'var(--bg-secondary)'
+              }}
             >
-              <h3 className="text-xl font-semibold mb-2 text-gray-100">{project.title}</h3>
-              <p className="text-gray-400 mb-4">{project.description}</p>
+              <h3 className="text-xl font-semibold mb-2" style={{ color: 'var(--text-primary)' }}>{project.title}</h3>
+              <p className="mb-4" style={{ color: 'var(--text-secondary)' }}>{project.description}</p>
               <div className="flex gap-2 flex-wrap mb-4">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="bg-gray-800 text-[#FFB8A3] text-sm px-3 py-1 rounded border border-gray-700"
+                    className="text-sm px-3 py-1 border"
+                    style={{ 
+                      backgroundColor: 'var(--bg-tertiary)',
+                      color: 'var(--accent-hover)',
+                      borderColor: 'var(--bg-border)',
+                      borderRadius: 'var(--radius-md)'
+                    }}
                   >
                     {tag}
                   </span>
@@ -57,7 +69,8 @@ export default function Home() {
               </div>
               <a
                 href={project.link}
-                className="text-[#FFA89C] hover:text-[#FFB8A3] font-medium transition-colors"
+                className="font-medium transition-colors"
+                style={{ color: 'var(--accent)' }}
               >
                 View Project →
               </a>
@@ -68,13 +81,14 @@ export default function Home() {
 
       {/* Latest Articles Preview */}
       <section>
-        <h2 className="text-3xl font-bold mb-8 text-gray-100">Latest Articles</h2>
-        <p className="text-gray-400 mb-6">
+        <h2 className="text-3xl font-bold mb-8" style={{ color: 'var(--text-primary)' }}>Latest Articles</h2>
+        <p className="mb-6" style={{ color: 'var(--text-secondary)' }}>
           Check out my blog for articles on web development, technology, and more.
         </p>
         <Link
           href="/blog"
-          className="text-[#FFA89C] hover:text-[#FFB8A3] font-medium transition-colors"
+          className="font-medium transition-colors inline-block hover:opacity-80"
+          style={{ color: 'var(--accent)' }}
         >
           View all articles →
         </Link>

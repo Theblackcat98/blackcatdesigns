@@ -39,4 +39,44 @@ No test suite currently configured. Add with `npm install -D jest @testing-libra
 
 **Styling:** TailwindCSS only (no CSS modules). Global styles in `app/globals.css`. Responsive with `md:` breakpoint.
 
+## Theme Customization (Single Source of Truth)
+
+**ALL theme customization happens in `/app/globals.css` lines 12-40:**
+
+```css
+:root {
+  /* Accent Colors - used for links, buttons, highlights */
+  --accent: #FFA89C;
+  --accent-hover: #FFB8A3;
+  
+  /* Background Colors */
+  --bg-primary: #0f172a;        /* Main page background */
+  --bg-secondary: rgba(...);    /* Cards, footer */
+  --bg-tertiary: #1e293b;       /* Inputs, tags */
+  --bg-border: #1e293b;         /* All borders */
+  
+  /* Text Colors */
+  --text-primary: #f1f5f9;      /* Headings */
+  --text-secondary: #d1d5db;    /* Body text */
+  --text-muted: #9ca3af;        /* Meta/timestamps */
+  
+  /* Border Radius */
+  --radius-md: 0.5rem;          /* Buttons, inputs */
+  --radius-lg: 0.5rem;          /* Cards, code blocks */
+  --radius-full: 9999px;        /* Pills */
+}
+```
+
+**Do NOT edit colors in component files.** All colors automatically use CSS variables. Edit vars once, updates everywhere.
+
+**Interactive Components:**
+- `NavLink` - Navigation links with hover effect
+- `FooterLink` - Footer links with optional external target
+- `HoverButton` - Buttons with customizable hover background
+- `HoverLink` - Generic link with hover color
+
+These are client components (`'use client'`) that handle color transitions without breaking SSG.
+
+**Inline Styles:** Use `style={{ color: 'var(--text-primary)' }}` to reference variables. Only interactive elements need client components.
+
 **No specific error handling rules yet** - add try/catch for file I/O as blog grows.

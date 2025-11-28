@@ -36,7 +36,21 @@ export default function BlogFilters({ posts, allCategories }: BlogFiltersProps) 
           placeholder="Search posts..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full bg-gray-900 border border-gray-800 rounded-lg px-4 py-3 text-gray-100 placeholder-gray-500 focus:outline-none focus:border-[#FFA89C] focus:ring-1 focus:ring-[#FFA89C]/50 transition"
+          className="w-full px-4 py-3 transition rounded-lg"
+          style={{
+            backgroundColor: 'var(--bg-secondary)',
+            borderColor: 'var(--bg-border)',
+            color: 'var(--text-primary)',
+            border: '1px solid var(--bg-border)',
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.borderColor = 'var(--accent)';
+            e.currentTarget.style.boxShadow = '0 0 0 1px rgba(255, 168, 156, 0.5)';
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.borderColor = 'var(--bg-border)';
+            e.currentTarget.style.boxShadow = 'none';
+          }}
         />
         <svg
           className="absolute right-3 top-3.5 w-5 h-5 text-gray-500"
@@ -55,34 +69,58 @@ export default function BlogFilters({ posts, allCategories }: BlogFiltersProps) 
 
       {/* Category Filter */}
       {allCategories.length > 0 && (
-        <div className="space-y-3">
-          <p className="text-sm font-semibold text-gray-300">Filter by category:</p>
-          <div className="flex flex-wrap gap-2">
-            <button
-              onClick={() => setSelectedCategory(null)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                selectedCategory === null
-                  ? 'bg-[#FFA89C] text-gray-950'
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
-              }`}
-            >
-              All Posts
-            </button>
-            {allCategories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  selectedCategory === category
-                    ? 'bg-[#FFA89C] text-gray-950'
-                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
+       <div className="space-y-3">
+         <p className="text-sm font-semibold" style={{ color: 'var(--text-secondary)' }}>Filter by category:</p>
+         <div className="flex flex-wrap gap-2">
+           <button
+             onClick={() => setSelectedCategory(null)}
+             className="px-4 py-2 text-sm font-medium transition-colors"
+             style={{
+               backgroundColor: selectedCategory === null ? 'var(--accent)' : 'var(--bg-tertiary)',
+               color: selectedCategory === null ? 'var(--bg-primary)' : 'var(--text-secondary)',
+               borderRadius: 'var(--radius-full)',
+               border: selectedCategory === null ? 'none' : '1px solid var(--bg-border)',
+             }}
+             onMouseEnter={(e) => {
+               if (selectedCategory !== null) {
+                 e.currentTarget.style.backgroundColor = 'var(--bg-border)';
+               }
+             }}
+             onMouseLeave={(e) => {
+               if (selectedCategory !== null) {
+                 e.currentTarget.style.backgroundColor = 'var(--bg-tertiary)';
+               }
+             }}
+           >
+             All Posts
+           </button>
+           {allCategories.map((category) => (
+             <button
+               key={category}
+               onClick={() => setSelectedCategory(category)}
+               className="px-4 py-2 text-sm font-medium transition-colors"
+               style={{
+                 backgroundColor: selectedCategory === category ? 'var(--accent)' : 'var(--bg-tertiary)',
+                 color: selectedCategory === category ? 'var(--bg-primary)' : 'var(--text-secondary)',
+                 borderRadius: 'var(--radius-full)',
+                 border: selectedCategory === category ? 'none' : '1px solid var(--bg-border)',
+               }}
+               onMouseEnter={(e) => {
+                 if (selectedCategory !== category) {
+                   e.currentTarget.style.backgroundColor = 'var(--bg-border)';
+                 }
+               }}
+               onMouseLeave={(e) => {
+                 if (selectedCategory !== category) {
+                   e.currentTarget.style.backgroundColor = 'var(--bg-tertiary)';
+                 }
+               }}
+             >
+               {category}
+             </button>
+           ))}
+         </div>
+       </div>
       )}
 
       {filteredPosts.length === 0 ? (
@@ -93,25 +131,37 @@ export default function BlogFilters({ posts, allCategories }: BlogFiltersProps) 
         </p>
       ) : (
         <div className="space-y-6">
-          <p className="text-sm text-gray-500">
+          <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
             Showing {filteredPosts.length} of {posts.length} posts
           </p>
           {filteredPosts.map((post) => (
             <article
               key={post.slug}
-              className="border border-gray-800 rounded-lg p-6 bg-gray-900/50 hover:border-[#FFA89C] hover:shadow-lg hover:shadow-[#FFA89C]/20 transition"
+              className="border rounded-lg p-6 transition"
+              style={{
+                borderColor: 'var(--bg-border)',
+                backgroundColor: 'var(--bg-secondary)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'var(--accent)';
+                e.currentTarget.style.boxShadow = `0 10px 15px -3px rgba(255, 168, 156, 0.2)`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'var(--bg-border)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
             >
               <Link
                 href={`/blog/${post.slug}`}
                 className="group"
               >
-                <h2 className="text-2xl font-semibold mb-2 text-gray-100 group-hover:text-[#FFB8A3] transition">
+                <h2 className="text-2xl font-semibold mb-2 transition" style={{ color: 'var(--text-primary)' }}>
                   {post.title}
                 </h2>
               </Link>
 
               <div className="flex items-center justify-between mb-3">
-                <time className="text-sm text-gray-500">
+                <time className="text-sm" style={{ color: 'var(--text-muted)' }}>
                   {new Date(post.date).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
@@ -119,12 +169,12 @@ export default function BlogFilters({ posts, allCategories }: BlogFiltersProps) 
                   })}
                 </time>
                 {post.author && (
-                  <span className="text-sm text-gray-500">by {post.author}</span>
+                  <span className="text-sm" style={{ color: 'var(--text-muted)' }}>by {post.author}</span>
                 )}
               </div>
 
               {post.description && (
-                <p className="text-gray-400 mb-4">{post.description}</p>
+                <p className="mb-4" style={{ color: 'var(--text-secondary)' }}>{post.description}</p>
               )}
 
               {post.tags && post.tags.length > 0 && (
@@ -132,7 +182,13 @@ export default function BlogFilters({ posts, allCategories }: BlogFiltersProps) 
                   {post.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="bg-gray-800 text-[#FFB8A3] text-xs px-3 py-1 rounded border border-gray-700"
+                      className="text-xs px-3 py-1 border"
+                      style={{
+                        backgroundColor: 'var(--bg-tertiary)',
+                        color: 'var(--accent-hover)',
+                        borderColor: 'var(--bg-border)',
+                        borderRadius: 'var(--radius-md)',
+                      }}
                     >
                       {tag}
                     </span>
@@ -142,7 +198,10 @@ export default function BlogFilters({ posts, allCategories }: BlogFiltersProps) 
 
               <Link
                 href={`/blog/${post.slug}`}
-                className="mt-4 inline-block text-[#FFA89C] hover:text-[#FFB8A3] font-medium transition-colors"
+                className="mt-4 inline-block font-medium transition-colors"
+                style={{ color: 'var(--accent)' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent-hover)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--accent)'}
               >
                 Read more →
               </Link>

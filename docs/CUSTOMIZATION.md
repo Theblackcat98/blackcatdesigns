@@ -4,25 +4,40 @@ This guide explains how to customize colors, spacing, border radius, and other d
 
 ## Design System Overview
 
-The design system is **centralized in `/app/globals.css`**. All styling uses **TailwindCSS** with `@apply` directives—no CSS modules or separate config objects.
+The design system is **fully centralized in `/app/globals.css`** using **CSS custom properties (variables)**. All colors, spacing, and border radius are defined in one place and used throughout the site via inline styles and Tailwind classes with CSS variables.
 
-### Current Design Tokens
+### Current Design Tokens (One Place to Edit)
 
-#### Colors (CSS Variables)
+**Edit ONLY `/app/globals.css` lines 12-40 to customize the entire theme:**
+
 ```css
-/* In @layer base section of globals.css */
 :root {
-  --accent: #FFA89C;           /* Primary peachy orange */
-  --accent-light: #FFE5DC;     /* Lighter variant (unused currently) */
+  /* Accent Colors - used for links, buttons, highlights */
+  --accent: #FFA89C;
+  --accent-light: #FFE5DC;
+  --accent-hover: #FFB8A3;
+
+  /* Background Colors */
+  --bg-primary: #0f172a;              /* Main page background (gray-950) */
+  --bg-secondary: rgba(15, 23, 42, 0.5); /* Cards, secondary elements */
+  --bg-tertiary: #1e293b;             /* Tertiary backgrounds (gray-800) */
+  --bg-border: #1e293b;               /* Border color (gray-800) */
+
+  /* Text Colors */
+  --text-primary: #f1f5f9;            /* Headings, primary text */
+  --text-secondary: #d1d5db;          /* Body text */
+  --text-muted: #9ca3af;              /* Meta text, timestamps */
+
+  /* Border Radius */
+  --radius-default: 0.25rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.5rem;
+  --radius-full: 9999px;
 }
 ```
 
-#### Color Palette (Tailwind classes)
-- **Background:** `gray-950` (body), `gray-900/50` (cards/footer)
-- **Text:** `gray-100` (headings), `gray-300` (body), `gray-400` (meta)
-- **Borders:** `gray-800`
-- **Accent:** `#FFA89C` (primary), `#FFB8A3` (hover)
-- **Code/UI:** `gray-800` (backgrounds), `gray-700` (borders)
+**That's it!** Every color, background, text color, and border radius across the entire site is defined here. Change a value and it updates everywhere automatically.
 
 #### Spacing
 Uses Tailwind defaults. Examples:
@@ -39,380 +54,272 @@ Uses Tailwind defaults. Examples:
 
 ## How to Customize
 
+### Everything in One Place
+
+All customization happens in `/app/globals.css` lines 12-40. No other files need editing for theme changes.
+
 ### 1. Change the Accent Color
 
 **Current:** Peachy orange (`#FFA89C`)
 
-The accent color appears in:
-- Links (all `<a>` tags)
-- Buttons (`.btn-accent` class)
-- List bullets
-- Blockquote borders
-- Category filter pills
-- Hover states
-- Checkbox accent
-
 **To change:**
 
-Edit `/app/globals.css` line 7:
+Edit `/app/globals.css` lines 13-16:
 ```css
-:root {
-  --accent: #YOUR_COLOR;        /* Change this */
-  --accent-light: #YOUR_LIGHTER_COLOR;
-}
+/* Accent Colors - used for links, buttons, highlights */
+--accent: #YOUR_COLOR;           /* Primary color for buttons, links, borders */
+--accent-light: #YOUR_LIGHTER_COLOR;  /* (currently unused) */
+--accent-hover: #YOUR_LIGHTER_VARIANT; /* Hover state for buttons and links */
 ```
 
-Then replace all hardcoded color references:
-- `#FFA89C` → your new color
-- `#FFB8A3` → your lighter variant (for hover states)
+**Impact:** Updates everywhere in one change:
+- All links
+- All buttons
+- List bullets
+- Blockquote borders
+- Category filter pills (hover state)
+- Checkbox accent
+- Focus rings on inputs
 
-**Files to update:**
-1. `/app/globals.css` - CSS variables + all hardcoded references
-2. `/app/layout.tsx` - Line 20 (header logo), lines 48, 84
-3. `/app/page.tsx` - Lines 31, 52, 60, 77
-4. `/components/BlogFilters.tsx` - Lines 39, 65, 77
-5. `/app/about/page.tsx` - Lines 35, 44, 49, 64, 68, 72, 76, 94, 102
-
-**Better approach (recommended):** Create a Tailwind theme config:
-
-Edit `/tailwind.config.ts`:
-```typescript
-import type { Config } from 'tailwindcss'
-
-const config: Config = {
-  content: [
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
-  theme: {
-    extend: {
-      colors: {
-        accent: {
-          DEFAULT: '#YOUR_COLOR',
-          light: '#YOUR_LIGHTER_COLOR',
-        },
-      },
-    },
-  },
-  plugins: [],
-}
-export default config
-```
-
-Then use `bg-accent`, `text-accent`, etc. in components.
+No component files need editing. CSS variables are used throughout.
 
 ### 2. Change Background Colors
 
-**Current:** `gray-950` (body) and `gray-900/50` (cards)
+**To customize:**
 
-**To change background darkness:**
-
-Edit `/app/globals.css` line 28:
+Edit `/app/globals.css` lines 19-23:
 ```css
-body {
-  @apply bg-gray-950 text-gray-100 ...  /* Change bg-gray-950 */
-}
+/* Background Colors */
+--bg-primary: #0f172a;              /* Main page background */
+--bg-secondary: rgba(15, 23, 42, 0.5); /* Cards, footer */
+--bg-tertiary: #1e293b;             /* Input fields, tags */
+--bg-border: #1e293b;               /* All borders */
 ```
 
-Common alternatives:
-- `bg-gray-900` - slightly lighter
-- `bg-slate-950` - more blue-ish
-- `bg-neutral-950` - more neutral
+**Examples:**
 
-For cards/secondary backgrounds (line 37, 43, etc.):
+Lighter dark theme:
 ```css
-/* Change from: */
-@apply bg-gray-900/50;  /* 50% opacity gray-900 */
-
-/* To: */
-@apply bg-gray-800/30;  /* Adjust opacity or base color */
+--bg-primary: #1a1f35;      /* Slightly lighter background */
+--bg-secondary: rgba(26, 31, 53, 0.5);
+--bg-tertiary: #2d3748;
+--bg-border: #2d3748;
 ```
 
-Files using background colors:
-- `/app/globals.css` - Lines 28, 37, 43, 77, 109, 138, 150, 161
-- `/app/layout.tsx` - Lines 16, 43
-- `/app/page.tsx` - Line 44
-- `/components/BlogFilters.tsx` - Lines 39, 102
-- `/app/about/page.tsx` - Lines 34, 43, 57
+High contrast (pure black):
+```css
+--bg-primary: #000000;
+--bg-secondary: rgba(0, 0, 0, 0.5);
+--bg-tertiary: #1a1a1a;
+--bg-border: #333333;
+```
+
+Light theme:
+```css
+--bg-primary: #ffffff;
+--bg-secondary: #f8f9fa;
+--bg-tertiary: #e8eaed;
+--bg-border: #d1d5db;
+```
+
+**Impact:** Updates all backgrounds in the site in one change.
 
 ### 3. Change Text Colors
 
-**Current:** `gray-100` (headings), `gray-300` (body), `gray-400` (meta)
-
-Edit `/app/globals.css` line 28:
+Edit `/app/globals.css` lines 25-27:
 ```css
-body {
-  @apply ... text-gray-100 ...  /* Change text-gray-100 */
-}
+/* Text Colors */
+--text-primary: #f1f5f9;    /* Headings, main text */
+--text-secondary: #d1d5db;  /* Body text */
+--text-muted: #9ca3af;      /* Meta text, timestamps, disabled */
 ```
 
-Files defining text colors:
-- `/app/globals.css` - Lines 28, 51, 55, 59, 63, 72, 103, 142, 156, 220
+**Examples:**
+
+Bright/High contrast:
+```css
+--text-primary: #ffffff;     /* Pure white */
+--text-secondary: #e5e7eb;   /* Very light gray */
+--text-muted: #a1a5aa;       /* Slightly darker muted */
+```
+
+Warm theme:
+```css
+--text-primary: #fef3c7;     /* Warm white */
+--text-secondary: #fde68a;   /* Warm light */
+--text-muted: #fcd34d;       /* Warm muted */
+```
+
+Light theme:
+```css
+--text-primary: #000000;
+--text-secondary: #374151;
+--text-muted: #6b7280;
+```
+
+**Impact:** Updates all text colors throughout the site.
 
 ### 4. Change Border Radius
 
-**Current:**
-- `rounded` (0.25rem) - inline code
-- `rounded-lg` (0.5rem) - buttons, cards, code blocks, images
-- `rounded-full` (9999px) - category pills
-
-**To change all rounded elements:**
-
-Option A: Edit individual selectors in `/app/globals.css`
+Edit `/app/globals.css` lines 33-39:
 ```css
-.prose code {
-  @apply bg-gray-800 text-[#FFB8A3] px-2 py-1 rounded-xl ...  /* Change rounded */
-}
+/* Border Radius */
+--radius-default: 0.25rem;  /* Inline code elements */
+--radius-sm: 0.375rem;      /* Small elements */
+--radius-md: 0.5rem;        /* Buttons, inputs, tags */
+--radius-lg: 0.5rem;        /* Cards, code blocks, images */
+--radius-full: 9999px;      /* Pills (category buttons) */
 ```
 
-Option B: Extend Tailwind config:
-```typescript
-theme: {
-  extend: {
-    borderRadius: {
-      DEFAULT: '0.5rem',  /* Default radius */
-    },
-  },
-}
-```
+**Examples:**
 
-Files with rounded elements:
-- Code blocks: `/app/globals.css` line 77
-- Buttons: `/app/page.tsx` lines 31, 94
-- Cards: `/app/page.tsx` line 44
-- Images: `/app/globals.css` line 202
-- Category pills: `/components/BlogFilters.tsx` line 63
-
-### 5. Change Border Color
-
-**Current:** `border-gray-800`
-
-Edit `/app/globals.css`:
+Super rounded (more modern):
 ```css
-/* Line 33 (header) */
-header {
-  @apply border-gray-800;  /* Change this */
-}
-
-/* Line 37 (footer) */
-footer {
-  @apply border-gray-800 ...;  /* And other instances */
-}
+--radius-md: 0.75rem;   /* Buttons, inputs */
+--radius-lg: 1rem;      /* Cards, code blocks */
+--radius-full: 9999px;
 ```
 
-Alternatives:
-- `border-gray-700` - lighter (more visible)
-- `border-gray-900` - darker (more subtle)
-- `border-[#FFA89C]` - accent color borders
-
-**Search for `border-gray-` in `/app/globals.css` to find all border definitions.**
-
-### 6. Change Markdown/Prose Styling
-
-All markdown content uses the `.prose` class. Common customizations:
-
-#### Heading Sizes
-Edit `/app/globals.css` lines 50-60:
+Minimal rounding (sharp corners):
 ```css
-.prose h1 {
-  @apply text-5xl ...;  /* Change text-4xl to text-5xl, etc. */
-}
+--radius-default: 0rem;
+--radius-sm: 0rem;
+--radius-md: 0.125rem;
+--radius-lg: 0.25rem;
+--radius-full: 9999px;  /* Pills still fully rounded */
 ```
 
-#### Code Block Styling
-Edit `/app/globals.css` lines 71-82:
+**Impact:** Updates border radius for buttons, cards, images, code blocks, tags, and all inputs.
+
+### 5. Border Color
+
+Borders use `--bg-border` (same as `--bg-tertiary`). To change, edit:
+
 ```css
-.prose code {
-  @apply bg-gray-800 text-[#FFB8A3] px-2 py-1 rounded ...;
-  /* Customize colors, padding, border radius */
-}
-
-.prose pre {
-  @apply bg-gray-900 border border-gray-800 text-gray-100 p-4 rounded-lg ...;
-  /* Customize background, border, padding */
-}
+--bg-border: #1e293b;  /* Line 23 in globals.css */
 ```
 
-#### Blockquote Styling
-Edit `/app/globals.css` lines 107-111:
+To make borders more visible, use a lighter color:
 ```css
-.prose blockquote {
-  @apply border-l-4 border-[#FFA89C] pl-4 my-4 text-gray-300;
-  background-color: rgba(255, 168, 156, 0.08);  /* Change this color/opacity */
-  @apply py-3 pr-4 rounded-r;
-}
+--bg-border: #334155;  /* Lighter gray */
 ```
 
-#### Table Styling
-Edit `/app/globals.css` lines 133-151:
+To match the accent color for emphasis:
 ```css
-.prose table {
-  @apply w-full border-collapse my-6;
-}
-
-.prose table thead {
-  @apply bg-gray-800;  /* Header background */
-}
-
-.prose table th {
-  @apply border border-gray-700 px-4 py-2 text-left text-gray-200 font-semibold;
-}
-
-.prose table td {
-  @apply border border-gray-700 px-4 py-2 text-gray-300;
-}
-
-.prose table tbody tr:nth-child(even) {
-  @apply bg-gray-900/50;  /* Striped rows */
-}
+--bg-border: var(--accent);  /* Use accent color for all borders */
 ```
 
-#### List Styling
-Edit `/app/globals.css` lines 85-104:
+**Impact:** Updates borders on cards, tables, inputs, and all structural elements.
+
+### 6. Markdown/Prose Styling
+
+All markdown elements automatically use your theme CSS variables. Changes to colors update markdown automatically:
+
+- **Headings** - Use `--text-primary`
+- **Body text** - Use `--text-secondary`
+- **Code blocks** - Use `--bg-secondary` and `--text-primary`
+- **Inline code** - Use `--bg-tertiary` and `--accent-hover`
+- **Blockquotes** - Use `--accent` for left border, `--text-secondary` for text
+- **Tables** - Use `--bg-tertiary` for headers, `--bg-secondary` for striped rows
+- **Links** - Use `--accent` and `--accent-hover`
+
+To customize markdown more extensively, edit the `.prose` selectors in `/app/globals.css` (lines ~81-300).
+
+**Change bullet character:**
+
+Edit `/app/globals.css` line ~145:
 ```css
 .prose ul li:before {
-  content: '•';
-  @apply absolute left-0 text-[#FFA89C] font-bold;  /* Bullet style and color */
+  content: '→';  /* Change • to →, ✦, ◆, etc. */
 }
 ```
 
-To change bullet character: `content: '→';` or `content: '✦';`
+### 7. Button Styles
 
-### 7. Change Button Styles
+Button styles automatically use your theme colors. Buttons use:
+- `--accent` for background
+- `--accent-hover` for hover state
+- `--bg-primary` for text color
 
-**Button class:** `.btn-accent` in `/app/globals.css` line 123-125
-
-```css
-.btn-accent {
-  @apply bg-[#FFA89C] text-gray-950 hover:bg-[#FFB8A3] transition-colors font-medium;
-}
-```
-
-Customization:
-```css
-.btn-accent {
-  @apply 
-    bg-accent              /* Background color */
-    text-gray-950         /* Text color */
-    hover:bg-accent-light /* Hover background */
-    px-6 py-3            /* Padding */
-    rounded-lg           /* Border radius */
-    font-medium          /* Font weight */
-    transition-colors;   /* Animation */
-}
-```
+All buttons update when you change accent colors.
 
 ---
 
-## Component-Specific Customization
+## Quick Reference: CSS Variables
 
-### Blog Post Cards
-
-Location: `/components/BlogFilters.tsx` line 102
-
-```typescript
-className="border border-gray-800 rounded-lg p-6 bg-gray-900/50 hover:border-[#FFA89C] hover:shadow-lg hover:shadow-[#FFA89C]/20 transition"
-```
-
-Customize:
-- `border-gray-800` - border color
-- `rounded-lg` - corner radius
-- `p-6` - padding
-- `bg-gray-900/50` - background
-- `hover:border-[#FFA89C]` - hover border
-- `hover:shadow-[#FFA89C]/20` - hover shadow color/opacity
-
-### Category Filter Pills
-
-Location: `/components/BlogFilters.tsx` lines 63-79
-
-```typescript
-className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-  selectedCategory === null
-    ? 'bg-[#FFA89C] text-gray-950'  /* Active state */
-    : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'  /* Inactive */
-}`}
-```
-
-Customize active/inactive colors separately.
-
-### Search Input
-
-Location: `/components/BlogFilters.tsx` lines 34-53
-
-```typescript
-className="w-full bg-gray-900 border border-gray-800 rounded-lg px-4 py-3 text-gray-100 placeholder-gray-500 focus:outline-none focus:border-[#FFA89C] focus:ring-1 focus:ring-[#FFA89C]/50 transition"
-```
-
-Customize focus states and colors.
-
----
-
-## Quick Reference: Color Replacements
-
-| Element | Current | How to Change |
-|---------|---------|---|
-| Accent color | `#FFA89C` | Update CSS var + all references |
-| Accent hover | `#FFB8A3` | Update all `hover:` variants |
-| Main background | `gray-950` | Change in `body` rule |
-| Card background | `gray-900/50` | Change all `.../50` backgrounds |
-| Primary text | `gray-100` | Change in `body` rule |
-| Body text | `gray-300` | Change in `.prose p`, `body` text rules |
-| Meta text | `gray-400` | Change in time/author elements |
-| Borders | `gray-800` | Change all `border-gray-800` |
-| Code bg | `gray-800` | Change in `.prose code` |
-| Table header | `gray-800` | Change in `.prose table thead` |
+| Element | Variable | Edit In |
+|---------|----------|---------|
+| Primary accent color | `--accent` | Line 14 |
+| Accent hover state | `--accent-hover` | Line 16 |
+| Main page background | `--bg-primary` | Line 19 |
+| Card/footer background | `--bg-secondary` | Line 20 |
+| Input/tag background | `--bg-tertiary` | Line 21 |
+| All borders | `--bg-border` | Line 22 |
+| Headings | `--text-primary` | Line 25 |
+| Body text | `--text-secondary` | Line 26 |
+| Meta text/timestamps | `--text-muted` | Line 27 |
+| Code border radius | `--radius-md` | Line 36 |
+| Card border radius | `--radius-lg` | Line 37 |
+| Category pill radius | `--radius-full` | Line 38 |
 
 ---
 
 ## Testing Your Changes
 
-After making changes:
+After editing `/app/globals.css`:
 
 ```bash
 npm run dev
-# Visit http://localhost:3000 and check:
-# 1. Homepage - hero section, project cards, buttons
-# 2. Blog page - search input, filter pills, post cards
-# 3. About page - sections and buttons
-# 4. Blog post - prose content (headings, code, quotes, lists, tables)
+# Visit http://localhost:3000 and check all pages automatically update:
+# - Homepage colors, buttons, cards
+# - Blog page filters and post cards
+# - About page sections and buttons
+# - Markdown content in blog posts
 ```
+
+Changes take effect immediately (no file recompilation needed).
 
 ---
 
 ## Best Practices
 
-1. **Use CSS variables** for colors you repeat frequently
-2. **Extend Tailwind config** for colors that should be reusable via classes
-3. **Test on all pages** before committing changes
-4. **Consider contrast** for accessibility (text on background)
-5. **Check both light and dark states** (hover, active, focus)
-6. **Update MARKDOWN_SUPPORT.md** if you change prose styling significantly
+1. **Only edit `/app/globals.css` (lines 12-40)** for theme changes
+2. **Use hex colors** for consistency (e.g., `#FFA89C`)
+3. **Use rgba() for opacity** in backgrounds (e.g., `rgba(15, 23, 42, 0.5)`)
+4. **Test contrast** - ensure text is readable on background colors
+5. **Keep accent color saturated** - muted accents reduce visual hierarchy
+6. **Update tailwind.config.ts** only if extending Tailwind utilities
 
 ---
 
 ## Common Customization Examples
 
-### Dark Mode (Current)
-Already implemented. Background: `gray-950`, Text: `gray-100`
+### Vibrant Accent (More Bold)
+```css
+--accent: #FF1744;        /* Vibrant red */
+--accent-hover: #FF5252;  /* Lighter red for hover */
+```
 
-### Light Mode
-1. Change `body` bg to `bg-white` or `bg-gray-50`
-2. Change text to `text-gray-950`
-3. Change borders to lighter shades
-4. Invert markdown prose colors
-5. Update accent color to something darker
+### Monochrome Theme (Grays Only)
+```css
+--accent: #94a3b8;        /* Gray accent */
+--accent-hover: #cbd5e1;  /* Lighter gray */
+```
 
-### High Contrast
-1. Use `gray-950` and `white` for maximum contrast
-2. Change accent to a bold, saturated color
-3. Remove opacity effects (e.g., `bg-gray-900/50` → `bg-gray-900`)
-4. Strengthen borders
+### High Contrast Dark
+```css
+--bg-primary: #000000;
+--text-primary: #ffffff;
+--bg-border: #444444;
+--accent: #FFD700;        /* Bold yellow accent */
+```
 
-### Warm Color Scheme
-1. Replace accent `#FFA89C` with warm color (`#FF6B6B`, `#FFA500`)
-2. Change gray tones to warm grays (`slate-950`, `amber-50`)
-3. Update secondary colors (code blocks, etc.)
+### Cooler Tones
+```css
+--bg-primary: #0f1419;    /* Slightly cooler black */
+--text-primary: #e0e6f0;  /* Cooler white */
+--accent: #00D9FF;        /* Cyan accent */
+```
 
 ---
 
@@ -420,12 +327,12 @@ Already implemented. Background: `gray-950`, Text: `gray-100`
 
 ```
 /app
-  /globals.css          ← Main design system (edit here!)
-  /layout.tsx           ← Header/footer hardcoded colors
-  /page.tsx             ← Homepage hardcoded colors
+  /globals.css          ← ⭐ ONLY FILE TO EDIT FOR THEME
+  /layout.tsx           ← Uses CSS variables
+  /page.tsx             ← Uses CSS variables
   /blog/page.tsx        ← Blog page
-  /about/page.tsx       ← About page hardcoded colors
+  /about/page.tsx       ← Uses CSS variables
 /components
-  /BlogFilters.tsx      ← Filter pills, search, post cards
-/tailwind.config.ts     ← Tailwind theme (extend colors here)
+  /BlogFilters.tsx      ← Uses CSS variables
+/tailwind.config.ts     ← Extended with CSS variable colors
 ```
