@@ -13,6 +13,8 @@ const config: Config = {
           DEFAULT: 'var(--accent)',
           light: 'var(--accent-light)',
           hover: 'var(--accent-hover)',
+          secondary: 'var(--accent-secondary)',
+          tertiary: 'var(--accent-tertiary)',
         },
         // Background colors
         bg: {

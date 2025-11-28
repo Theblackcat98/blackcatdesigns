@@ -13,7 +13,7 @@ export default function Home() {
     <div className="space-y-16">
       {/* Hero Section */}
       <section className="py-16 text-center relative">
-        <div 
+        <div
           className="absolute inset-0 opacity-30"
           style={{
             background: 'radial-gradient(ellipse at center, var(--accent) 0%, transparent 70%)',
@@ -21,28 +21,28 @@ export default function Home() {
           }}
         />
         <div className="relative">
-          <p 
+          <p
             className="text-sm font-medium tracking-wider uppercase mb-4"
             style={{ color: 'var(--accent)' }}
           >
             Full-Stack Developer
           </p>
-          <h1 
-            className="text-5xl md:text-6xl font-bold mb-6 leading-tight" 
+          <h1
+            className="text-5xl md:text-6xl font-bold mb-6 leading-tight"
             style={{ color: 'var(--text-primary)' }}
           >
             Building Beautiful
             <br />
             <span style={{ color: 'var(--accent)' }}>Digital Experiences</span>
           </h1>
-          <p 
-            className="text-xl mb-8 max-w-2xl mx-auto" 
+          <p
+            className="text-xl mb-8 max-w-2xl mx-auto"
             style={{ color: 'var(--text-secondary)' }}
           >
-            I craft fast, accessible, and visually compelling web applications 
+            I craft fast, accessible, and visually compelling web applications
             using modern technologies like Next.js, React, and TypeScript.
           </p>
-          
+
           {/* CTAs */}
           <div className="flex gap-4 justify-center flex-wrap">
             <HoverButton
@@ -55,8 +55,8 @@ export default function Home() {
             <Link
               href="/contact"
               className="px-8 py-3 font-medium border rounded-lg transition-colors"
-              style={{ 
-                borderColor: 'var(--bg-border)', 
+              style={{
+                borderColor: 'var(--bg-border)',
                 color: 'var(--text-primary)',
               }}
             >
@@ -88,8 +88,8 @@ export default function Home() {
           <h2 className="text-3xl font-bold" style={{ color: 'var(--text-primary)' }}>
             Featured Projects
           </h2>
-          <Link 
-            href="/projects" 
+          <Link
+            href="/projects"
             className="text-sm font-medium transition-colors"
             style={{ color: 'var(--accent)' }}
           >
@@ -97,24 +97,16 @@ export default function Home() {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-           {projects.map((project) => (
-             <Link
-               key={project.slug}
-               href={`/projects/${project.slug}`}
-               className="group block border rounded-lg overflow-hidden transition-all"
-               style={{ 
-                 borderColor: 'var(--bg-border)', 
-                 backgroundColor: 'var(--bg-secondary)'
-               }}
-               onMouseEnter={(e) => {
-                 e.currentTarget.style.borderColor = 'var(--accent)';
-                 e.currentTarget.style.boxShadow = `0 10px 15px -3px rgba(255, 168, 156, 0.2)`;
-               }}
-               onMouseLeave={(e) => {
-                 e.currentTarget.style.borderColor = 'var(--bg-border)';
-                 e.currentTarget.style.boxShadow = 'none';
-               }}
-             >
+          {projects.map((project) => (
+            <Link
+              key={project.slug}
+              href={`/projects/${project.slug}`}
+              className="group block border rounded-lg overflow-hidden transition-all hover:border-accent hover:shadow-[0_0_20px_rgba(255,168,156,0.15)]"
+              style={{
+                borderColor: 'var(--bg-border)',
+                backgroundColor: 'var(--bg-secondary)'
+              }}
+            >
               {/* Project Image */}
               {project.image && (
                 <div className="relative aspect-video bg-gray-800 overflow-hidden">
@@ -126,10 +118,10 @@ export default function Home() {
                   />
                 </div>
               )}
-              
+
               <div className="p-6">
-                <h3 
-                  className="text-xl font-semibold mb-2 transition-colors group-hover:text-[var(--accent)]" 
+                <h3
+                  className="text-xl font-semibold mb-2 transition-colors group-hover:text-accent"
                   style={{ color: 'var(--text-primary)' }}
                 >
                   {project.title}
@@ -142,7 +134,7 @@ export default function Home() {
                     <span
                       key={tag}
                       className="text-sm px-3 py-1 border"
-                      style={{ 
+                      style={{
                         backgroundColor: 'var(--bg-tertiary)',
                         color: 'var(--accent-hover)',
                         borderColor: 'var(--bg-border)',
@@ -165,35 +157,27 @@ export default function Home() {
           <h2 className="text-3xl font-bold" style={{ color: 'var(--text-primary)' }}>
             Latest Articles
           </h2>
-          <Link 
-            href="/blog" 
+          <Link
+            href="/blog"
             className="text-sm font-medium transition-colors"
             style={{ color: 'var(--accent)' }}
           >
             View all →
           </Link>
         </div>
-        
+
         {latestPosts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-             {latestPosts.map((post) => (
-               <Link
-                 key={post.slug}
-                 href={`/blog/${post.slug}`}
-                 className="group block p-6 border rounded-lg transition-all"
-                 style={{ 
-                   borderColor: 'var(--bg-border)', 
-                   backgroundColor: 'var(--bg-secondary)'
-                 }}
-                 onMouseEnter={(e) => {
-                   e.currentTarget.style.borderColor = 'var(--accent)';
-                   e.currentTarget.style.boxShadow = `0 10px 15px -3px rgba(255, 168, 156, 0.2)`;
-                 }}
-                 onMouseLeave={(e) => {
-                   e.currentTarget.style.borderColor = 'var(--bg-border)';
-                   e.currentTarget.style.boxShadow = 'none';
-                 }}
-               >
+            {latestPosts.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group block p-6 border rounded-lg transition-all hover:border-accent hover:shadow-[0_0_20px_rgba(255,168,156,0.15)]"
+                style={{
+                  borderColor: 'var(--bg-border)',
+                  backgroundColor: 'var(--bg-secondary)'
+                }}
+              >
                 <time className="text-sm" style={{ color: 'var(--text-muted)' }}>
                   {new Date(post.date).toLocaleDateString('en-US', {
                     month: 'short',
@@ -201,8 +185,8 @@ export default function Home() {
                     year: 'numeric',
                   })}
                 </time>
-                <h3 
-                  className="text-lg font-semibold mt-2 mb-2 line-clamp-2 transition-colors group-hover:text-[var(--accent)]" 
+                <h3
+                  className="text-lg font-semibold mt-2 mb-2 line-clamp-2 transition-colors group-hover:text-[var(--accent)]"
                   style={{ color: 'var(--text-primary)' }}
                 >
                   {post.title}
@@ -228,11 +212,11 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section 
+      <section
         className="text-center py-12 px-6 rounded-lg border"
-        style={{ 
-          backgroundColor: 'var(--bg-secondary)', 
-          borderColor: 'var(--bg-border)' 
+        style={{
+          backgroundColor: 'var(--bg-secondary)',
+          borderColor: 'var(--bg-border)'
         }}
       >
         <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>

@@ -10,25 +10,49 @@
 
     /* Accent Colors - used for links, buttons, highlights */
     --accent: #FFA89C;
+    /* Peach (Original) */
     --accent-light: #FFE5DC;
+    /* Light Peach */
     --accent-hover: #FFB8A3;
+    /* Hover Peach */
+
+    /* Secondary Accents - for variety and gradients */
+    --accent-secondary: #C4A7E7;
+    /* Lavender */
+    --accent-tertiary: #81C784;
+    /* Soft Green */
 
     /* Background Colors */
-    --bg-primary: #282828; /* Main page background (gray-950) */
-    --bg-secondary: rgba(15, 23, 42, 0.5); /* Cards, secondary elements (gray-900/50) */
-    --bg-tertiary: #1e293b; /* Tertiary backgrounds (gray-800) */
-    --bg-border: #323232; /* Border color (gray-800) */
+    --bg-primary: #0B1120;
+    /* Deep Rich Night (Slate 950+) */
+    --bg-secondary: rgba(30, 41, 59, 0.7);
+    /* Glassy Slate 800 */
+    --bg-tertiary: rgba(51, 65, 85, 0.5);
+    /* Glassy Slate 700 */
+    --bg-border: rgba(255, 255, 255, 0.08);
+    /* Subtle white border for dark mode */
 
     /* Text Colors */
-    --text-primary: #f1f5f9; /* Headings, primary text (gray-100) */
-    --text-secondary: #d1d5db; /* Body text (gray-300) */
-    --text-muted: #9ca3af; /* Meta text, timestamps (gray-400) */
+    --text-primary: #F8FAFC;
+    /* Slate 50 */
+    --text-secondary: #CBD5E1;
+    /* Slate 300 */
+    --text-muted: #94A3B8;
+    /* Slate 400 */
+
+    /* Effects */
+    --glass-blur: 12px;
+    --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+    --shadow-glow: 0 0 20px rgba(255, 168, 156, 0.15);
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
     /* Border Radius */
     --radius-default: 0.25rem;
     --radius-sm: 0.375rem;
-    --radius-md: 0.5rem;
-    --radius-lg: 0.5rem;
+    --radius-md: 0.75rem;
+    /* More modern, softer corners */
+    --radius-lg: 1rem;
+    /* Larger card radius */
     --radius-full: 9999px;
   }
 }
@@ -50,8 +74,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-primary);
+  background-image: radial-gradient(circle at 50% 0%, rgba(255, 168, 156, 0.05), transparent 40%);
   color: var(--text-primary);
-  @apply transition-colors;
+  @apply transition-colors min-h-screen;
+}
+
+/* Glassmorphism Utility */
+.glass {
+  background: var(--bg-secondary);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: var(--glass-border);
 }
 
 /* Dark mode backgrounds */
@@ -196,14 +229,18 @@ article {
 }
 
 /* Buttons with accent color */
+/* Buttons with accent color */
 .btn-accent {
-  background-color: var(--accent);
-  color: var(--bg-primary);
-  @apply font-medium transition-colors;
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  color: #0f172a;
+  /* Dark text on bright button for contrast */
+  box-shadow: var(--shadow-glow);
+  @apply font-medium transition-all duration-300 transform hover:-translate-y-0.5;
 }
 
 .btn-accent:hover {
-  background-color: var(--accent-hover);
+  filter: brightness(1.1);
+  box-shadow: 0 0 30px rgba(255, 168, 156, 0.3);
 }
 
 /* Tags */
@@ -287,11 +324,11 @@ article {
   border-color: var(--accent);
 }
 
-.prose li input[type="checkbox"] ~ * {
+.prose li input[type="checkbox"]~* {
   @apply inline;
 }
 
-.prose input[type="checkbox"]:checked ~ * {
+.prose input[type="checkbox"]:checked~* {
   @apply line-through text-gray-500;
 }
 
