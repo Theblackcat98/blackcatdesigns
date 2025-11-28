@@ -51,8 +51,17 @@ function processHtmlExtensions(html: string): string {
   html = html.replace(/==(.*?)==/g, '<mark>$1</mark>')
 
   // Add IDs to headings for TOC navigation
+  const idMap = new Map<string, number>()
   html = html.replace(/<h([2-3])>([^<]+)<\/h\1>/g, (match, level, text) => {
-    const id = slugify(text)
+    let id = slugify(text)
+    // Handle duplicate IDs by appending a counter
+    if (idMap.has(id)) {
+      const count = idMap.get(id)! + 1
+      idMap.set(id, count)
+      id = `${id}-${count}`
+    } else {
+      idMap.set(id, 0)
+    }
     return `<h${level} id="${id}">${text}</h${level}>`
   })
   
