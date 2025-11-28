@@ -26,8 +26,10 @@ export default function RootLayout({
             </div>
             <div className="space-x-6">
               <NavLink href="/">Home</NavLink>
+              <NavLink href="/projects">Projects</NavLink>
               <NavLink href="/blog">Blog</NavLink>
               <NavLink href="/about">About</NavLink>
+              <NavLink href="/contact">Contact</NavLink>
             </div>
           </nav>
         </header>
@@ -54,10 +56,16 @@ export default function RootLayout({
                     <FooterLink href="/">Home</FooterLink>
                   </li>
                   <li>
+                    <FooterLink href="/projects">Projects</FooterLink>
+                  </li>
+                  <li>
                     <FooterLink href="/blog">Blog</FooterLink>
                   </li>
                   <li>
                     <FooterLink href="/about">About</FooterLink>
+                  </li>
+                  <li>
+                    <FooterLink href="/contact">Contact</FooterLink>
                   </li>
                 </ul>
               </div>

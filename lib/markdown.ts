@@ -36,11 +36,25 @@ function processMarkdownExtensions(text: string): string {
   return text
 }
 
+// Generate a URL-friendly slug from text
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '')
+}
+
 // Apply post-processing transformations after remark (after HTML generation)
 function processHtmlExtensions(html: string): string {
   // Highlight: ==text== -> <mark>text</mark>
   // This needs to happen after remark processing to preserve HTML
   html = html.replace(/==(.*?)==/g, '<mark>$1</mark>')
+
+  // Add IDs to headings for TOC navigation
+  html = html.replace(/<h([2-3])>([^<]+)<\/h\1>/g, (match, level, text) => {
+    const id = slugify(text)
+    return `<h${level} id="${id}">${text}</h${level}>`
+  })
   
   return html
 }

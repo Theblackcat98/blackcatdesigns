@@ -15,14 +15,34 @@ No test suite currently configured. Add with `npm install -D jest @testing-libra
 
 **Next.js 15 App Router** with static site generation:
 - `/app` - Server components, layouts, pages (file-based routing)
-- `/lib` - Utilities: `posts.ts` (blog discovery), `markdown.ts` (remark conversion)
+- `/lib` - Utilities: `posts.ts`, `projects.ts`, `author.ts`, `markdown.ts`, `search.ts`
 - `/public/posts/*.md` - Blog content (YAML frontmatter + markdown)
+- `/public/projects/` - Project images
 - Fully typed TypeScript, strict mode enabled
 
-**Key Internal APIs:**
+**SEO & Feeds:**
+- `/sitemap.xml` - Auto-generated sitemap with all pages
+- `/feed.xml` - RSS feed for blog posts
+- `/api/og` - Dynamic Open Graph image generation
+- JSON-LD structured data on blog posts (BlogPosting schema)
+
+**Key Internal APIs (Posts):**
 - `getAllPosts()` / `getPostBySlug(slug)` / `getSlugs()` - Post discovery from filesystem
-- `markdownToHtml(markdown)` - remark/rehype conversion
-- Frontmatter fields: `title`, `date`, `description`, `author`, `tags`, `published`
+- `getAllTags()` - Get all unique tags across posts
+- `getPostsByTag(tag)` - Filter posts by tag
+- `getRelatedPosts(slug, limit)` - Find related posts by shared tags
+- `getPostsByYear()` - Group posts by year for archive
+- `markdownToHtml(markdown)` - remark/rehype conversion with heading IDs for TOC
+- Frontmatter fields: `title`, `date`, `description`, `author`, `tags`, `published`, `coverImage`
+- Post objects include `readingTime` (calculated automatically)
+
+**Key Internal APIs (Projects):**
+- `getAllProjects()` / `getFeaturedProjects()` / `getProjectBySlug(slug)` / `getProjectSlugs()`
+- Project fields: `slug`, `title`, `description`, `problem`, `solution`, `result`, `tags`, `image`, `liveUrl`, `githubUrl`, `featured`
+
+**Key Internal APIs (Author):**
+- `getAuthor(name?)` - Get author info for bylines
+- Author fields: `name`, `bio`, `avatar`, `github`, `twitter`, `linkedin`, `website`
 
 ## Code Style & Conventions
 

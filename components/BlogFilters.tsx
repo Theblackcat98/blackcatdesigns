@@ -160,7 +160,7 @@ export default function BlogFilters({ posts, allCategories }: BlogFiltersProps) 
                 </h2>
               </Link>
 
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-3 mb-3 flex-wrap">
                 <time className="text-sm" style={{ color: 'var(--text-muted)' }}>
                   {new Date(post.date).toLocaleDateString('en-US', {
                     year: 'numeric',
@@ -168,8 +168,13 @@ export default function BlogFilters({ posts, allCategories }: BlogFiltersProps) 
                     day: 'numeric',
                   })}
                 </time>
+                {post.readingTime && (
+                  <span className="text-sm" style={{ color: 'var(--text-muted)' }}>
+                    · {post.readingTime} min read
+                  </span>
+                )}
                 {post.author && (
-                  <span className="text-sm" style={{ color: 'var(--text-muted)' }}>by {post.author}</span>
+                  <span className="text-sm" style={{ color: 'var(--text-muted)' }}>· by {post.author}</span>
                 )}
               </div>
 
@@ -180,18 +185,27 @@ export default function BlogFilters({ posts, allCategories }: BlogFiltersProps) 
               {post.tags && post.tags.length > 0 && (
                 <div className="flex gap-2 flex-wrap">
                   {post.tags.map((tag) => (
-                    <span
+                    <Link
                       key={tag}
-                      className="text-xs px-3 py-1 border"
+                      href={`/blog/tag/${encodeURIComponent(tag)}`}
+                      className="text-xs px-3 py-1 border transition-colors"
                       style={{
                         backgroundColor: 'var(--bg-tertiary)',
                         color: 'var(--accent-hover)',
                         borderColor: 'var(--bg-border)',
                         borderRadius: 'var(--radius-md)',
                       }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = 'var(--bg-border)';
+                        e.currentTarget.style.borderColor = 'var(--accent)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'var(--bg-tertiary)';
+                        e.currentTarget.style.borderColor = 'var(--bg-border)';
+                      }}
                     >
                       {tag}
-                    </span>
+                    </Link>
                   ))}
                 </div>
               )}
