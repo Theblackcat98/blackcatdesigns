@@ -10,6 +10,7 @@ const config: Config = {
       fontFamily: {
         heading: ['var(--font-heading)'],
         body: ['var(--font-body)'],
+        'dm-serif': ['"DM Serif Text"', 'serif'],
         sans: ['var(--font-body)'], // Default sans to Satoshi
       },
       colors: {

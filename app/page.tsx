@@ -41,7 +41,7 @@ export default function Home() {
 
           <div className="mb-8">
             <h1
-              className="text-6xl md:text-8xl lg:text-9xl font-bold leading-[0.9] tracking-tighter"
+              className="font-dm-serif text-6xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tighter"
               style={{ color: 'var(--text-primary)' }}
             >
               <TextReveal text="Building" className="block" delay={0.1} />
