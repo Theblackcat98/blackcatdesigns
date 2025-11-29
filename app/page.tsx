@@ -16,10 +16,10 @@ export default function Home() {
   return (
     <div className="space-y-24">
       {/* Hero Section */}
-      <section className="py-24 text-center relative min-h-[80vh] flex flex-col justify-center items-center overflow-hidden">
+      <section className="py-24 text-center relative min-h-[80vh] flex flex-col justify-center items-center">
         {/* Background Effects */}
         <div
-          className="absolute inset-0 opacity-40 pointer-events-none"
+          className="absolute -inset-[10%] opacity-40 pointer-events-none"
           style={{
             background: 'radial-gradient(ellipse at center, var(--accent) 0%, transparent 60%)',
             filter: 'blur(80px)',
@@ -27,7 +27,7 @@ export default function Home() {
         />
         {/* Noise texture removed for clarity */}
 
-        <div className="absolute inset-0 z-0">
+        <div className="absolute -inset-[10%] z-0">
           <Hero3DWrapper />
         </div>
 
