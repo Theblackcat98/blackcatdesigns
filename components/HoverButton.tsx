@@ -1,5 +1,7 @@
 'use client'
 
+import Magnetic from './Magnetic'
+
 interface HoverButtonProps {
   href?: string
   target?: string
@@ -24,38 +26,42 @@ export default function HoverButton({
   hoverBgColor = 'var(--accent-hover)',
 }: HoverButtonProps) {
   const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
-    ;(e.currentTarget as HTMLElement).style.backgroundColor = hoverBgColor
+    ; (e.currentTarget as HTMLElement).style.backgroundColor = hoverBgColor
   }
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
-    ;(e.currentTarget as HTMLElement).style.backgroundColor = bgColor
+    ; (e.currentTarget as HTMLElement).style.backgroundColor = bgColor
   }
 
   if (href) {
     return (
-      <a
-        href={href}
-        target={target}
-        rel={rel}
+      <Magnetic>
+        <a
+          href={href}
+          target={target}
+          rel={rel}
+          className={`inline-block transition-colors ${className}`}
+          style={{ backgroundColor: bgColor, borderRadius: 'var(--radius-md)', ...style }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          {children}
+        </a>
+      </Magnetic>
+    )
+  }
+
+  return (
+    <Magnetic>
+      <button
+        onClick={onClick}
         className={`inline-block transition-colors ${className}`}
         style={{ backgroundColor: bgColor, borderRadius: 'var(--radius-md)', ...style }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         {children}
-      </a>
-    )
-  }
-
-  return (
-    <button
-      onClick={onClick}
-      className={`inline-block transition-colors ${className}`}
-      style={{ backgroundColor: bgColor, borderRadius: 'var(--radius-md)', ...style }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      {children}
-    </button>
+      </button>
+    </Magnetic>
   )
 }

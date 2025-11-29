@@ -8,6 +8,10 @@
        CUSTOMIZE YOUR THEME HERE
        ======================================== */
 
+    /* Fonts */
+    --font-heading: 'Clash Display', sans-serif;
+    --font-body: 'Satoshi', sans-serif;
+
     /* Accent Colors - used for links, buttons, highlights */
     --accent: #FFA89C;
     /* Peach (Original) */

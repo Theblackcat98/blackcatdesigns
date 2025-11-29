@@ -1,5 +1,7 @@
 'use client'
 
+import Magnetic from './Magnetic'
+
 interface NavLinkProps {
   href: string
   children: React.ReactNode
@@ -7,14 +9,16 @@ interface NavLinkProps {
 
 export default function NavLink({ href, children }: NavLinkProps) {
   return (
-    <a
-      href={href}
-      className="transition-colors"
-      style={{ color: 'var(--text-secondary)' }}
-      onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent)')}
-      onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
-    >
-      {children}
-    </a>
+    <Magnetic>
+      <a
+        href={href}
+        className="transition-colors block px-2 py-1"
+        style={{ color: 'var(--text-secondary)' }}
+        onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent)')}
+        onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
+      >
+        {children}
+      </a>
+    </Magnetic>
   )
 }

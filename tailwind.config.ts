@@ -7,6 +7,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        heading: ['var(--font-heading)'],
+        body: ['var(--font-body)'],
+        sans: ['var(--font-body)'], // Default sans to Satoshi
+      },
       colors: {
         // Accent colors - change these to customize the theme
         accent: {

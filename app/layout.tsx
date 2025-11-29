@@ -3,6 +3,7 @@ import './globals.css'
 import NavLink from '@/components/NavLink'
 import FooterLink from '@/components/FooterLink'
 import { Github, Instagram } from 'lucide-react'
+import SmoothScroll from '@/components/SmoothScroll'
 
 export const metadata: Metadata = {
   title: 'Portfolio & Blog',
@@ -16,7 +17,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark scroll-smooth">
+      <head>
+        <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet" />
+      </head>
       <body className="flex flex-col min-h-screen" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
+        <SmoothScroll />
+        {/* Global Noise Overlay */}
+        <div
+          className="fixed inset-0 pointer-events-none z-50 opacity-[0.03] mix-blend-overlay"
+          style={{
+            backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")',
+          }}
+        />
         <header className="sticky top-0 z-50 border-b" style={{ borderColor: 'var(--bg-border)', backgroundColor: 'var(--bg-secondary)', backdropFilter: 'blur(var(--glass-blur))', WebkitBackdropFilter: 'blur(var(--glass-blur))' }}>
           <nav className="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center flex-wrap gap-4 md:gap-0 md:flex-nowrap">
             <div className="flex flex-col">
