@@ -4,7 +4,7 @@ import HoverButton from '@/components/HoverButton'
 import { getFeaturedProjects } from '@/lib/projects'
 import { getAllPosts } from '@/lib/posts'
 import FadeIn, { StaggerContainer, StaggerItem } from '@/components/animations/FadeIn'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Briefcase, Mail, FolderGit, FileText, Clock, MessageSquare } from 'lucide-react'
 
 export default function Home() {
   const projects = getFeaturedProjects()
@@ -49,19 +49,21 @@ export default function Home() {
           <div className="flex gap-4 justify-center flex-wrap">
             <HoverButton
               href="/projects"
-              className="px-8 py-3 font-medium"
+              className="px-8 py-3 font-medium flex items-center gap-2"
               style={{ color: 'var(--bg-primary)' }}
             >
+              <Briefcase className="w-4 h-4" />
               View My Work
             </HoverButton>
             <Link
               href="/contact"
-              className="px-8 py-3 font-medium border rounded-lg transition-colors"
+              className="px-8 py-3 font-medium border rounded-lg transition-colors flex items-center gap-2"
               style={{
                 borderColor: 'var(--bg-border)',
                 color: 'var(--text-primary)',
               }}
             >
+              <Mail className="w-4 h-4" />
               Get in Touch
             </Link>
           </div>
@@ -69,15 +71,24 @@ export default function Home() {
           {/* Stats */}
           <div className="flex gap-8 justify-center mt-12 flex-wrap">
             <div className="text-center">
-              <p className="text-3xl font-bold" style={{ color: 'var(--accent)' }}>{projects.length}+</p>
+              <div className="flex items-center justify-center gap-2 mb-1">
+                <FolderGit className="w-5 h-5" style={{ color: 'var(--accent)' }} />
+                <p className="text-3xl font-bold" style={{ color: 'var(--accent)' }}>{projects.length}+</p>
+              </div>
               <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Projects</p>
             </div>
             <div className="text-center">
-              <p className="text-3xl font-bold" style={{ color: 'var(--accent)' }}>{totalPosts}+</p>
+              <div className="flex items-center justify-center gap-2 mb-1">
+                <FileText className="w-5 h-5" style={{ color: 'var(--accent)' }} />
+                <p className="text-3xl font-bold" style={{ color: 'var(--accent)' }}>{totalPosts}+</p>
+              </div>
               <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Blog Posts</p>
             </div>
             <div className="text-center">
-              <p className="text-3xl font-bold" style={{ color: 'var(--accent)' }}>3+</p>
+              <div className="flex items-center justify-center gap-2 mb-1">
+                <Clock className="w-5 h-5" style={{ color: 'var(--accent)' }} />
+                <p className="text-3xl font-bold" style={{ color: 'var(--accent)' }}>3+</p>
+              </div>
               <p className="text-sm" style={{ color: 'var(--text-muted)' }}>Years Experience</p>
             </div>
           </div>
@@ -234,9 +245,10 @@ export default function Home() {
             </p>
             <HoverButton
               href="/contact"
-              className="px-8 py-3 font-medium"
+              className="px-8 py-3 font-medium flex items-center gap-2 mx-auto"
               style={{ color: 'var(--bg-primary)' }}
             >
+              <MessageSquare className="w-4 h-4" />
               Start a Conversation
             </HoverButton>
           </div>

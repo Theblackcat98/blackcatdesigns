@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import NavLink from '@/components/NavLink'
 import FooterLink from '@/components/FooterLink'
+import { Github, Instagram } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Portfolio & Blog',
@@ -16,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <body className="flex flex-col min-h-screen" style={{ backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
-        <header className="sticky top-0 z-50 border-b backdrop-blur-sm" style={{ borderColor: 'var(--bg-border)', backgroundColor: 'rgba(40, 40, 40, 0.9)' }}>
+        <header className="sticky top-0 z-50 border-b" style={{ borderColor: 'var(--bg-border)', backgroundColor: 'var(--bg-secondary)', backdropFilter: 'blur(var(--glass-blur))', WebkitBackdropFilter: 'blur(var(--glass-blur))' }}>
           <nav className="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center flex-wrap gap-4 md:gap-0 md:flex-nowrap">
             <div className="flex flex-col">
               <a href="/" className="text-2xl font-bold transition-colors" style={{ color: 'var(--accent)' }}>
@@ -75,10 +76,20 @@ export default function RootLayout({
                 <h4 className="text-sm font-semibold mb-4" style={{ color: 'var(--text-secondary)' }}>Connect</h4>
                 <ul className="space-y-2 text-sm">
                   <li>
-                    <FooterLink href="https://github.com/theblackcat98" external>GitHub</FooterLink>
+                    <FooterLink href="https://github.com/theblackcat98" external>
+                      <span className="flex items-center gap-2">
+                        <Github className="w-4 h-4" />
+                        GitHub
+                      </span>
+                    </FooterLink>
                   </li>
                   <li>
-                    <FooterLink href="https://instagram.com/theblackcat98" external>Instagram</FooterLink>
+                    <FooterLink href="https://instagram.com/theblackcat98" external>
+                      <span className="flex items-center gap-2">
+                        <Instagram className="w-4 h-4" />
+                        Instagram
+                      </span>
+                    </FooterLink>
                   </li>
                 </ul>
               </div>
