@@ -6,8 +6,8 @@ import type { VFile } from 'vfile'
 
 // Simple markdown transformations for features not in GFM (before remark processing)
 function processMarkdownExtensions(text: string): string {
-  // Subscript: H~2~O -> H<sub>2</sub>O
-  text = text.replace(/~([^~]+)~/g, '<sub>$1</sub>')
+  // Subscript: H~2~O -> H<sub>2</sub>O (using lookarounds to avoid matching ~~strikethrough~~)
+  text = text.replace(/(?<!~)~([^~]+)~(?!~)/g, '<sub>$1</sub>')
 
   // Superscript: X^2^ -> X<sup>2</sup>
   text = text.replace(/\^([^^]+)\^/g, '<sup>$1</sup>')
@@ -64,7 +64,7 @@ function processHtmlExtensions(html: string): string {
     }
     return `<h${level} id="${id}">${text}</h${level}>`
   })
-  
+
   return html
 }
 
