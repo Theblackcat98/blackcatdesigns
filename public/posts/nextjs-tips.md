@@ -4,7 +4,7 @@ description: "Practical tips for building fast and scalable applications with Ne
 date: "2025-11-26"
 author: "You"
 tags: ["nextjs", "development", "web-dev"]
-published: true
+published: false
 ---
 
 # Next.js 15 Tips and Tricks

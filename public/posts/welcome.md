@@ -34,6 +34,8 @@ You can use all standard Markdown features:
 - **Bold text**
 - *Italic text*
 - [Links](https://example.com)
+- ==Highlighting==
+- ~~Strikethrough~~ 
 - Code blocks with syntax highlighting
 
 ```javascript
