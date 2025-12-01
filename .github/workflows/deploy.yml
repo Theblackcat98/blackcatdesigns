@@ -63,14 +63,43 @@ jobs:
           echo "❌ package.json not found!"
         fi
 
-    # Deploy SSR build artifacts to builds branch
-    - name: Deploy SSR build to builds branch
+    # Create optimized build for deployment
+    - name: Create optimized SSR build
+      run: |
+        echo "Creating optimized build for deployment..."
+        # Copy only essential SSR files
+        mkdir -p build
+        cp -r .next build/
+        cp package.json build/
+        cp package-lock.json build/
+        cp -r app build/
+        cp -r components build/
+        cp -r lib build/
+        cp -r public build/
+        cp next.config.js build/
+        cp tsconfig.json build/
+        cp tailwind.config.ts build/
+
+        # Create production .next directory with essential files only
+        mkdir -p .next-minimal
+        cp -r .next/static .next-minimal/
+        cp -r .next/server .next-minimal/
+
+        # Remove large webpack files to stay under GitHub limits
+        find .next-minimal -name "*.pack" -delete
+        find .next-minimal -name "*.map" -delete
+        find .next-minimal -name "*.hot-update.*" -delete
+
+        echo "Build optimized for deployment"
+        ls -la .next-minimal/ || true
+
+    # Deploy optimized SSR build to builds branch
+    - name: Deploy optimized SSR to builds branch
       if: github.event_name == 'push' && success()
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        folder: .next        # Deploy built SSR artifacts
-        target-folder: .     # Deploy to root of builds branch
-        branch: builds        # Create builds branch
+        folder: build
+        branch: builds
         clean: true
         single-commit: true
 

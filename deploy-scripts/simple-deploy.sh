@@ -1,13 +1,14 @@
 #!/bin/bash
 
-# Simplified Next.js VPS Deployment Script
-# For blackcatdesigns portfolio
+# Next.js SSR VPS Deployment Script for cPanel
+# For blackcatdesigns portfolio - Updated for SSR and cPanel structure
 
-# Configuration - UPDATE THESE VALUES
+# Configuration
 REPO_URL="https://github.com/Theblackcat98/blackcatdesigns.git"
 BRANCH="builds"
-DEPLOY_DIR="/home/thebjwjc/public_html/"       # CHANGE THIS to your actual web root
-LOG_FILE="/home/thebjwjc/logs/site-deploy.log" # Keep your original log location
+DEPLOY_DIR="/home/thebjwjc/public_html/portfolio_app"  # cPanel document root + app directory
+LOG_FILE="/home/thebjwjc/logs/site-deploy.log"
+NODE_VERSION="20"
 
 # Ensure log directory exists
 mkdir -p "$(dirname "$LOG_FILE")"
