@@ -11,6 +11,8 @@ import { BlogPostingJsonLd } from '@/components/JsonLd'
 import CodeBlockCopy from '@/components/CodeBlockCopy'
 import ReadingProgress from '@/components/ReadingProgress'
 import ShareButtons from '@/components/ShareButtons'
+import ScrollReveal from '@/components/ScrollReveal'
+import styles from './BlogLayout.module.css'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -26,8 +28,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const ogImage = post.coverImage 
-    ? post.coverImage 
+  const ogImage = post.coverImage
+    ? post.coverImage
     : `/api/og?title=${encodeURIComponent(post.title)}&description=${encodeURIComponent(post.description || '')}&type=article`
 
   return {
@@ -80,59 +82,11 @@ export default async function BlogPostPage({ params }: Props) {
       <ReadingProgress />
       <BlogPostingJsonLd post={post} author={author} url={postUrl} />
       <CodeBlockCopy />
-      <article className="max-w-3xl mx-auto">
-        <header className="mb-8">
-        <Link
-          href="/blog"
-          className="text-[#FFA89C] hover:text-[#FFB8A3] mb-4 inline-block transition-colors"
-        >
-          ← Back to blog
-        </Link>
 
-        <h1 className="text-4xl font-bold mb-4 text-gray-100">{post.title}</h1>
-
-        <div className="flex items-center gap-3 flex-wrap mb-4" style={{ color: 'var(--text-muted)' }}>
-          <time>
-            {new Date(post.date).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </time>
-          {post.readingTime && (
-            <span>· {post.readingTime} min read</span>
-          )}
-          {post.author && <span>· by {post.author}</span>}
-        </div>
-
-        {post.tags && post.tags.length > 0 && (
-          <div className="flex gap-2 flex-wrap">
-            {post.tags.map((tag) => (
-              <Link
-                key={tag}
-                href={`/blog/tag/${encodeURIComponent(tag)}`}
-                className="text-sm px-3 py-1 border transition-colors"
-                style={{
-                  backgroundColor: 'var(--bg-tertiary)',
-                  color: 'var(--accent-hover)',
-                  borderColor: 'var(--bg-border)',
-                  borderRadius: 'var(--radius-md)',
-                }}
-              >
-                {tag}
-              </Link>
-            ))}
-          </div>
-        )}
-      </header>
-
-      {/* Cover Image */}
-      {post.coverImage && (
-        <div 
-          className="mb-8 rounded-lg overflow-hidden border"
-          style={{ borderColor: 'var(--bg-border)' }}
-        >
-          <div className="relative aspect-video">
+      <div className={styles.container}>
+        {/* Masked Header Image */}
+        <div className={styles.headerImage}>
+          {post.coverImage && (
             <Image
               src={post.coverImage}
               alt={post.title}
@@ -140,23 +94,86 @@ export default async function BlogPostPage({ params }: Props) {
               className="object-cover"
               priority
             />
-          </div>
+          )}
         </div>
-      )}
 
-      <TableOfContents html={htmlContent} />
+        {/* Main Content */}
+        <main className={styles.mainContent}>
+          <ScrollReveal>
+            <header className="mb-12 text-center">
+              <Link
+                href="/blog"
+                className="text-[#FFA89C] hover:text-[#FFB8A3] mb-6 inline-block transition-colors"
+              >
+                ← Back to blog
+              </Link>
 
-      <div
-        className="prose max-w-none"
-        dangerouslySetInnerHTML={{ __html: htmlContent }}
-      />
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 text-gray-100 leading-tight">{post.title}</h1>
 
-      <ShareButtons url={postUrl} title={post.title} description={post.description} />
+              <div className="flex items-center justify-center gap-3 flex-wrap mb-6 text-gray-400">
+                <time>
+                  {new Date(post.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </time>
+                {post.readingTime && (
+                  <span>· {post.readingTime} min read</span>
+                )}
+                {post.author && <span>· by {post.author}</span>}
+              </div>
 
-      <AuthorByline author={author} />
+              {post.tags && post.tags.length > 0 && (
+                <div className="flex justify-center gap-2 flex-wrap">
+                  {post.tags.map((tag) => (
+                    <Link
+                      key={tag}
+                      href={`/blog/tag/${encodeURIComponent(tag)}`}
+                      className="text-sm px-3 py-1 border transition-colors hover:border-[#FFA89C] hover:text-[#FFA89C]"
+                      style={{
+                        backgroundColor: 'var(--bg-tertiary)',
+                        color: 'var(--text-secondary)',
+                        borderColor: 'var(--bg-border)',
+                        borderRadius: 'var(--radius-md)',
+                      }}
+                    >
+                      {tag}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </header>
+          </ScrollReveal>
 
-      <RelatedPosts posts={relatedPosts} />
-      </article>
+          <TableOfContents html={htmlContent} />
+
+          <ScrollReveal>
+            <div
+              className="prose max-w-none prose-invert prose-lg"
+              dangerouslySetInnerHTML={{ __html: htmlContent }}
+            />
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <div className="mt-16 pt-8 border-t border-gray-800">
+              <ShareButtons url={postUrl} title={post.title} description={post.description} />
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <div className="mt-12">
+              <AuthorByline author={author} />
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <div className="mt-12">
+              <RelatedPosts posts={relatedPosts} />
+            </div>
+          </ScrollReveal>
+        </main>
+      </div>
     </>
   )
 }

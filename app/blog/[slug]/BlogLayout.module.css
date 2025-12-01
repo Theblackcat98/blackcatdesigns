@@ -1,0 +1,50 @@
+/* BlogLayout.module.css */
+
+.container {
+  /* so its descendants know its width 
+   * minus vertical scrollbar, 
+   * if there is any, as 100cqw */
+  container-type: inline-size;
+  /* for skip links */
+  scroll-behavior: smooth;
+  display: grid;
+  /* create the three columns of the grid */
+  grid-template-columns:
+    1lh min(100cqw - 2lh, 750px) 1lh;
+  /* Increased max-width slightly for better readability */
+  justify-content: center;
+  /* needed for viewport sticky skip links */
+  align-items: start;
+  position: relative;
+  /* font-size scales with viewport 
+   * within reasonable limits */
+  /* font: clamp(.875em, 3vw, 1.375em)/ 3 sans-serif; */
+}
+
+.headerImage {
+  grid-area: 1/ 1/ span 1/ span 3;
+  justify-self: center;
+  width: 100cqw
+    /* full-bleed */
+  ;
+  height: 60vh;
+  position: relative;
+  /* so it goes from opaque at the top to 
+   * transparent at the bottom */
+  mask: linear-gradient(black, #0000);
+  -webkit-mask: linear-gradient(black, #0000);
+  z-index: 0;
+}
+
+.mainContent {
+  /* 1st (only) row, 2nd column */
+  grid-area: 1/ 2;
+  /* we want its children to know its width 
+   * for font sizing  */
+  container-type: inline-size;
+  /* ensure it's on top of header image */
+  z-index: 1;
+  padding-top: 30vh;
+  /* Push content down to reveal image */
+  padding-bottom: 10vh;
+}
