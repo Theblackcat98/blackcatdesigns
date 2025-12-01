@@ -35,33 +35,50 @@ jobs:
     - name: Type check
       run: npm run type-check
 
-    - name: Build Next.js application
+    - name: Build Next.js application for SSR
       run: npm run build
       env:
         NEXT_TELEMETRY_DISABLED: 1
 
-    - name: Verify build output
+    - name: Verify SSR build output
       run: |
         echo "Current directory contents:"
         ls -la
         echo ""
-        echo "Checking if out directory exists:"
-        if [ -d "out" ]; then
-          echo "✅ out directory found!"
-          echo "Contents of out directory:"
-          ls -la out/
+        echo "Checking if .next directory exists:"
+        if [ -d ".next" ]; then
+          echo "✅ .next directory found!"
+          echo "Contents of .next directory:"
+          ls -la .next/
         else
-          echo "❌ out directory not found!"
+          echo "❌ .next directory not found!"
           echo "Available directories:"
           find . -maxdepth 1 -type d
         fi
+        echo ""
+        echo "Checking for package.json:"
+        if [ -f "package.json" ]; then
+          echo "✅ package.json found!"
+        else
+          echo "❌ package.json not found!"
+        fi
 
-    # Push build to the builds branch
-    - name: Push build to builds branch
+    # Deploy SSR build artifacts to builds branch
+    - name: Deploy SSR build to builds branch
       if: github.event_name == 'push' && success()
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        folder: .
-        branch: builds
+        folder: .next        # Deploy built SSR artifacts
+        target-folder: .     # Deploy to root of builds branch
+        branch: builds        # Create builds branch
         clean: true
         single-commit: true
+
+    - name: Deploy source files to builds branch
+      if: github.event_name == 'push' && success()
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: .         # Deploy source files (package.json, etc.)
+        branch: builds        # Same builds branch
+        clean: false       # Don't remove existing .next
+        single-commit: false
