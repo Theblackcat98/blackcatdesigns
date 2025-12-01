@@ -58,6 +58,26 @@
     --radius-lg: 1rem;
     /* Larger card radius */
     --radius-full: 9999px;
+
+    /* Navbar Specific */
+    --navbar-bg: rgba(26, 26, 26, 0.9);
+    --navbar-border: #333;
+    --navbar-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --navbar-brand-color: #ffffff;
+    --navlink-hover-bg: var(--bg-secondary);
+    --navlink-active-color: var(--text-primary);
+    --navlink-inactive-color: var(--text-muted);
+
+    /* Navbar Buttons */
+    --navbar-login-bg: transparent;
+    --navbar-login-border: var(--text-muted);
+    --navbar-login-color: var(--text-secondary);
+    --navbar-login-hover-color: var(--text-primary);
+    --navbar-login-hover-border: var(--bg-border);
+
+    --navbar-signup-bg: var(--text-primary);
+    --navbar-signup-color: var(--bg-primary);
+    --navbar-signup-hover-bg: var(--text-secondary);
   }
 }
 

@@ -23,9 +23,10 @@ export default function NavLink({ href, children, onClick }: NavLinkProps) {
       <a
         href={href}
         className={`relative font-medium text-sm transition-all duration-300 ${
-          isActive ? 'text-white' : 'text-gray-400 hover:text-white'
+          isActive ? '' : 'hover:text-white'
         }`}
         style={{
+          color: isActive ? 'var(--navlink-active-color)' : 'var(--navlink-inactive-color)',
           textDecoration: 'none',
           position: 'relative'
         }}
@@ -38,9 +39,10 @@ export default function NavLink({ href, children, onClick }: NavLinkProps) {
       >
         {children}
         <span
-          className={`absolute bottom-[-5px] left-1/2 transform -translate-x-1/2 h-[2px] bg-white transition-all duration-300 ${
+          className={`absolute bottom-[-5px] left-1/2 transform -translate-x-1/2 h-[2px] transition-all duration-300 ${
             isActive ? 'w-full' : 'w-0 hover:w-full'
           }`}
+          style={{ backgroundColor: 'var(--accent)' }}
         />
       </a>
     </Magnetic>

@@ -80,3 +80,5 @@ npm run type-check   # TypeScript type checking
 - `/lib/` - Utility functions and data management
 - `/public/posts/` - Blog post markdown files
 - `/deploy-scripts/` - Deployment configuration
+- Always use @app/globals.css for any all styling.
+- For any reusable css style, use variables.
