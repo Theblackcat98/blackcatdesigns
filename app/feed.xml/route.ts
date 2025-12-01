@@ -1,6 +1,6 @@
 import { getAllPosts } from '@/lib/posts'
 
-const SITE_URL = 'https://blackcatdesigns.dev'
+const SITE_URL = 'https://theblackcatdesigns.com'
 
 // Configure for static export
 export const dynamic = 'force-static'
@@ -13,7 +13,7 @@ export async function GET() {
     .map((post) => {
       const pubDate = new Date(post.date).toUTCString()
       const link = `${SITE_URL}/blog/${post.slug}`
-      
+
       return `
     <item>
       <title><![CDATA[${post.title}]]></title>

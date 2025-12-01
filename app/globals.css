@@ -78,6 +78,12 @@
     --navbar-signup-bg: var(--text-primary);
     --navbar-signup-color: var(--bg-primary);
     --navbar-signup-hover-bg: var(--text-secondary);
+
+    /* Auth Components */
+    --auth-button-hover: var(--accent-light);
+    --auth-dropdown-bg: var(--bg-secondary);
+    --auth-dropdown-border: var(--bg-border);
+    --auth-user-avatar-bg: linear-gradient(135deg, var(--accent), var(--accent-secondary));
   }
 }
 
