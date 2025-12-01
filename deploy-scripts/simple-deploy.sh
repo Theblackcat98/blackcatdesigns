@@ -4,7 +4,7 @@
 # For blackcatdesigns portfolio
 
 # Configuration - UPDATE THESE VALUES
-REPO_URL="git@github.com:Theblackcat98/blackcatdesigns.git"
+REPO_URL="https://github.com/Theblackcat98/blackcatdesigns.git"
 BRANCH="builds"
 DEPLOY_DIR="/home/thebjwjc/public_html/"       # CHANGE THIS to your actual web root
 LOG_FILE="/home/thebjwjc/logs/site-deploy.log" # Keep your original log location
@@ -15,11 +15,7 @@ mkdir -p "$(dirname "$LOG_FILE")"
 # Start deployment
 echo "=== Next.js Deployment started at $(date) ===" >>$LOG_FILE
 
-# Start SSH agent if not running
-if [ -z "$SSH_AUTH_SOCK" ]; then
-  eval "$(ssh-agent -s)"
-  ssh-add ~/.ssh/github
-fi
+# SSH agent not needed for HTTPS repository
 
 # Navigate to deploy directory
 cd $DEPLOY_DIR 2>/dev/null || {
