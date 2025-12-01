@@ -5,6 +5,7 @@ import FooterLink from '@/components/FooterLink'
 import { Github, Instagram } from 'lucide-react'
 import SmoothScroll from '@/components/SmoothScroll'
 import { ClerkProvider } from '@clerk/nextjs'
+import ConditionalClerkProvider from '@/components/auth/ConditionalClerkProvider'
 
 export const metadata: Metadata = {
   title: 'Portfolio & Blog',
@@ -17,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
+    <ConditionalClerkProvider>
       <html lang="en" className="dark scroll-smooth" suppressHydrationWarning>
         <head>
           <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet" />
@@ -102,6 +103,6 @@ export default function RootLayout({
         </footer>
       </body>
     </html>
-    </ClerkProvider>
+    </ConditionalClerkProvider>
   )
 }
