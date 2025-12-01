@@ -8,8 +8,7 @@ const isProtectedRoute = createRouteMatcher([
 ]);
 
 export default clerkMiddleware((auth, req) => {
-  // Only apply auth middleware if Clerk is configured
-  if (process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY && isProtectedRoute(req)) {
+  if (isProtectedRoute(req)) {
     auth.protect();
   }
 });
