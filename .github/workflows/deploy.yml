@@ -31,13 +31,12 @@ jobs:
         echo "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}" >> .env.local
         echo "CLERK_SECRET_KEY=${{ secrets.CLERK_SECRET_KEY }}" >> .env.local
         echo "NODE_ENV=production" >> .env.local
-        echo "NEXT_OUTPUT_MODE=export" >> .env.local
 
     - name: Type check
       run: npm run type-check
 
     - name: Build Next.js application
-      run: npm run export
+      run: npm run build
       env:
         NEXT_TELEMETRY_DISABLED: 1
 
@@ -62,7 +61,7 @@ jobs:
       if: github.event_name == 'push' && success()
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        folder: out
+        folder: .
         branch: builds
         clean: true
         single-commit: true

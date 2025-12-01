@@ -3,15 +3,18 @@ const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
 
-  // Static export configuration
-  output: 'export',
-
   // Add trailing slash for directory-style serving
   trailingSlash: true,
 
-  // Ensure images work with static hosting
+  // Re-enable image optimization for SSR
   images: {
-    unoptimized: true,
+    unoptimized: false,
+  },
+
+  // Add production optimizations
+  swcMinify: true,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
   },
 };
 
