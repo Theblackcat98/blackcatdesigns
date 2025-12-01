@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import NavLink from '@/components/NavLink'
+import FloatingNav from '@/components/FloatingNav'
 import FooterLink from '@/components/FooterLink'
 import { Github, Instagram } from 'lucide-react'
 import SmoothScroll from '@/components/SmoothScroll'
@@ -30,25 +30,9 @@ export default function RootLayout({
             backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")',
           }}
         />
-        <header className="sticky top-0 z-50 border-b" style={{ borderColor: 'var(--bg-border)', backgroundColor: 'var(--bg-secondary)', backdropFilter: 'blur(var(--glass-blur))', WebkitBackdropFilter: 'blur(var(--glass-blur))' }}>
-          <nav className="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center flex-wrap gap-4 md:gap-0 md:flex-nowrap">
-            <div className="flex flex-col">
-              <a href="/" className="text-2xl font-bold transition-colors" style={{ color: 'var(--accent)' }}>
-                BlackCatDesigns
-              </a>
-              <p className="text-xs mt-1" style={{ color: 'var(--text-muted)' }}>Cultivating Aesthetic Transformations</p>
-            </div>
-            <div className="flex space-x-4 md:space-x-6 text-sm md:text-base">
-              <NavLink href="/">Home</NavLink>
-              <NavLink href="/projects">Projects</NavLink>
-              <NavLink href="/blog">Blog</NavLink>
-              <NavLink href="/about">About</NavLink>
-              <NavLink href="/contact">Contact</NavLink>
-            </div>
-          </nav>
-        </header>
+        <FloatingNav />
 
-        <main className="max-w-4xl mx-auto px-6 py-12 flex-grow w-full">
+        <main className="max-w-4xl mx-auto px-6 pt-24 pb-12 flex-grow w-full">
           {children}
         </main>
 
