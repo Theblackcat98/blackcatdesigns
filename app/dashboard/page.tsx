@@ -69,6 +69,13 @@ export default async function DashboardPage() {
             </h2>
             <div className="space-y-3">
               <a
+                href="/resources"
+                className="block w-full text-center px-4 py-2 rounded-lg btn-accent font-medium"
+                style={{ color: '#0f172a' }}
+              >
+                📁 Resources & Downloads
+              </a>
+              <a
                 href="/protected"
                 className="block w-full text-center px-4 py-2 rounded-lg glass hover:backdrop-blur-md transition-all"
                 style={{ color: 'var(--text-primary)' }}

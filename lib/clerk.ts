@@ -4,15 +4,19 @@ export async function getCurrentUser() {
   return await currentUser()
 }
 
-export async function isAdmin(userId: string): Promise<boolean> {
+export async function isAdmin(userId?: string): Promise<boolean> {
   try {
-    // Admin check: either email contains 'admin' OR user has admin metadata
-    // In production, you'd use Clerk's metadata or a database
+    // Secure admin check using only Clerk's metadata system
+    // This prevents unauthorized access by removing email-based checks
     const user = await currentUser()
-    const userEmail = user?.emailAddresses[0]?.emailAddress
 
-    return userEmail?.includes('admin@theblackcatdesigns.com') || // Anyone with @gmail.com gets admin access
-      user?.publicMetadata?.role === 'admin'
+    // If no user provided, use current user
+    const targetUserId = userId || user?.id
+
+    // Get the user's public metadata - this is the secure way to check admin status
+    const userRole = user?.publicMetadata?.role
+
+    return userRole === 'admin'
   } catch (error) {
     console.error('Error checking admin status:', error)
     return false

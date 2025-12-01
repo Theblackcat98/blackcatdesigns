@@ -5,6 +5,7 @@ import NavLink from './NavLink'
 import SignInButton from './auth/SignInButton'
 import SignUpButton from './auth/SignUpButton'
 import AuthUserButton from './auth/UserButton'
+import { Lock, Download, Shield } from 'lucide-react'
 
 export default function FloatingNav() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)

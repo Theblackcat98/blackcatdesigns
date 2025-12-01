@@ -6,9 +6,19 @@ import { useState } from 'react'
 import { ChevronDown, User, Settings, LogOut, Layout, Shield } from 'lucide-react'
 
 export default function AuthUserButton() {
-  const { isSignedIn } = useAuth()
-  const { user } = useUser()
+  const { isSignedIn, isLoaded: authLoaded } = useAuth()
+  const { user, isLoaded: userLoaded } = useUser()
   const [isOpen, setIsOpen] = useState(false)
+
+  // Show loading state while Clerk is initializing
+  if (!authLoaded || !userLoaded) {
+    return (
+      <div className="flex items-center gap-2 px-3 py-1.5 rounded-full glass">
+        <div className="w-8 h-8 rounded-full bg-gray-600 animate-pulse"></div>
+        <div className="w-4 h-4 rounded-full bg-gray-600 animate-pulse"></div>
+      </div>
+    )
+  }
 
   if (!isSignedIn) {
     return null
