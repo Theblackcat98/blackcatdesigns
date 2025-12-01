@@ -2,6 +2,10 @@ import { getAllPosts } from '@/lib/posts'
 
 const SITE_URL = 'https://blackcatdesigns.dev'
 
+// Configure for static export
+export const dynamic = 'force-static'
+export const revalidate = 3600 // Revalidate every hour
+
 export async function GET() {
   const posts = getAllPosts()
 

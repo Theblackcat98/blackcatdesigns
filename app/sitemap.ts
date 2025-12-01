@@ -4,6 +4,10 @@ import { getAllProjects } from '@/lib/projects'
 
 const SITE_URL = 'https://blackcatdesigns.dev'
 
+// Configure for static export
+export const dynamic = 'force-static'
+export const revalidate = 3600 // Revalidate every hour
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getAllPosts()
   const projects = getAllProjects()

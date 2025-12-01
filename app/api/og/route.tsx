@@ -3,6 +3,10 @@ import { NextRequest } from 'next/server'
 
 export const runtime = 'edge'
 
+// Configure for static export
+export const dynamic = 'force-static'
+export const revalidate = 3600 // Revalidate every hour
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   
