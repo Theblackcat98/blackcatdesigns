@@ -1,11 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import NavLink from './NavLink'
-import SignInButton from './auth/SignInButton'
-import SignUpButton from './auth/SignUpButton'
-import AuthUserButton from './auth/UserButton'
-import { Lock, Download, Shield } from 'lucide-react'
 
 export default function FloatingNav() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -17,19 +13,6 @@ export default function FloatingNav() {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false)
   }
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Element
-      if (!target.closest('[data-user-menu]')) {
-        // This will be handled by the AuthUserButton component
-      }
-    }
-
-    document.addEventListener('click', handleClickOutside)
-    return () => document.removeEventListener('click', handleClickOutside)
-  }, [])
 
   return (
     <header
@@ -50,22 +33,12 @@ export default function FloatingNav() {
         </a>
 
         <div className="hidden md:flex items-center gap-6 flex-1 min-w-0">
-          <div className="flex items-center gap-6 flex-1 min-w-0">
-            <div className="flex items-center gap-5">
-              <NavLink href="/">Home</NavLink>
-              <NavLink href="/projects">Projects</NavLink>
-              <NavLink href="/blog">Blog</NavLink>
-              <NavLink href="/about">About</NavLink>
-              <NavLink href="/contact">Contact</NavLink>
-            </div>
-
-            <div className="flex items-center gap-3 ml-auto flex-shrink-0">
-              <div className="flex items-center gap-3">
-                <SignInButton />
-                <SignUpButton />
-                <AuthUserButton />
-              </div>
-            </div>
+          <div className="flex items-center gap-5">
+            <NavLink href="/">Home</NavLink>
+            <NavLink href="/projects">Projects</NavLink>
+            <NavLink href="/blog">Blog</NavLink>
+            <NavLink href="/about">About</NavLink>
+            <NavLink href="/contact">Contact</NavLink>
           </div>
         </div>
 
@@ -80,7 +53,6 @@ export default function FloatingNav() {
 
       {/* Mobile Menu */}
       <div
-        id="navLinks"
         className={`${
           isMobileMenuOpen ? 'flex' : 'hidden'
         } absolute top-full left-0 right-0 mt-2 rounded-lg glass p-5 flex-col gap-4 md:!hidden`}
@@ -92,14 +64,6 @@ export default function FloatingNav() {
           <NavLink href="/blog" onClick={closeMobileMenu}>Blog</NavLink>
           <NavLink href="/about" onClick={closeMobileMenu}>About</NavLink>
           <NavLink href="/contact" onClick={closeMobileMenu}>Contact</NavLink>
-        </div>
-
-        <div className="flex flex-col gap-3 pt-4" style={{ borderTop: '1px solid var(--bg-border)' }}>
-          <div className="flex flex-col gap-3">
-            <SignInButton />
-            <SignUpButton />
-            <AuthUserButton />
-          </div>
         </div>
       </div>
     </header>

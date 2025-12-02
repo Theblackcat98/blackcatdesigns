@@ -6,13 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "export": "next build",
-    "start": "node server.js",
-    "start:next": "next start",
+    "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@clerk/nextjs": "^6.35.5",
     "@gsap/react": "^2.1.2",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.4.0",

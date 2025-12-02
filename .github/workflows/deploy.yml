@@ -1,113 +1,107 @@
+# Build static Next.js portfolio and deploy to GitHub Pages
 name: Build Website
 
 on:
   push:
     branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+
+# Set permissions for GitHub deployment
+permissions:
+  contents: write
+  deployments: write
+  pages: write
+  id-token: write
 
 jobs:
+  # Build job
   build:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
+    outputs:
+      # Output build success for deploy job conditioning
+      build-success:
+        description: "Whether build completed successfully"
+        value: ${{ steps.build.outcome == 'success' }}
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      # Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-        cache: 'npm'
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-    - name: Install dependencies
-      run: npm ci
+      # Install dependencies
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Create .env.local file
-      run: |
-        echo "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}" >> .env.local
-        echo "CLERK_SECRET_KEY=${{ secrets.CLERK_SECRET_KEY }}" >> .env.local
-        echo "NODE_ENV=production" >> .env.local
+      # Type check
+      - name: Type check
+        run: npm run type-check
 
-    - name: Type check
-      run: npm run type-check
+      # Build static Next.js application
+      - name: Build static Next.js application
+        run: npm run build
 
-    - name: Build Next.js application for SSR
-      run: npm run build
-      env:
-        NEXT_TELEMETRY_DISABLED: 1
+      # Verify static build output
+      - name: Verify static build output
+        run: |
+          echo "Current directory contents:"
+          ls -la
+          echo ""
+          echo "Checking if .next directory exists:"
+          if [ -d ".next" ]; then
+            echo "✅ .next directory found!"
+            echo "Contents of .next directory:"
+            ls -la .next/
+            echo ""
+            echo "Checking for static files:"
+            echo "out/ directory contents:"
+            ls -la out/ || echo "out/ directory not found"
+          else
+            echo "❌ .next directory not found!"
+          fi
 
-    - name: Verify SSR build output
-      run: |
-        echo "Current directory contents:"
-        ls -la
-        echo ""
-        echo "Checking if .next directory exists:"
-        if [ -d ".next" ]; then
-          echo "✅ .next directory found!"
-          echo "Contents of .next directory:"
-          ls -la .next/
-        else
-          echo "❌ .next directory not found!"
-          echo "Available directories:"
-          find . -maxdepth 1 -type d
-        fi
-        echo ""
-        echo "Checking for package.json:"
-        if [ -f "package.json" ]; then
-          echo "✅ package.json found!"
-        else
-          echo "❌ package.json not found!"
-        fi
+      # Upload build artifacts for deployment
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-files
+          path: |
+            .next/
+            app/
+            components/
+            lib/
+            public/
+            package.json
+            package-lock.json
+            next.config.js
+            tsconfig.json
+            tailwind.config.ts
+            tsconfig.tsbuildinfo
+          retention-days: 1
 
-    # Create optimized build for deployment
-    - name: Create optimized SSR build
-      run: |
-        echo "Creating optimized build for deployment..."
-        # Copy only essential SSR files
-        mkdir -p build
-        cp -r .next build/
-        cp package.json build/
-        cp package-lock.json build/
-        cp -r app build/
-        cp -r components build/
-        cp -r lib build/
-        cp -r public build/
-        cp next.config.js build/
-        cp tsconfig.json build/
-        cp tailwind.config.ts build/
+  # Deploy job (runs only if build succeeded)
+  deploy:
+    needs: build
+    if: needs.build.outputs.build-success == 'true'
+    runs-on: ubuntu-latest
 
-        # Create production .next directory with essential files only
-        mkdir -p .next-minimal
-        cp -r .next/static .next-minimal/
-        cp -r .next/server .next-minimal/
+    steps:
+      # Download build artifacts
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-files
+          path: .
 
-        # Remove large webpack files to stay under GitHub limits
-        find .next-minimal -name "*.pack" -delete
-        find .next-minimal -name "*.map" -delete
-        find .next-minimal -name "*.hot-update.*" -delete
-
-        echo "Build optimized for deployment"
-        ls -la .next-minimal/ || true
-
-    # Deploy optimized SSR build to builds branch
-    - name: Deploy optimized SSR to builds branch
-      if: github.event_name == 'push' && success()
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: build
-        branch: builds
-        clean: true
-        single-commit: true
-
-    - name: Deploy source files to builds branch
-      if: github.event_name == 'push' && success()
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: .         # Deploy source files (package.json, etc.)
-        branch: builds        # Same builds branch
-        clean: false       # Don't remove existing .next
-        single-commit: false
+      # Deploy static files to GitHub Pages
+      - name: Deploy static site to GitHub Pages
+        uses: peaceiris/actions/github-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          # Deploy from out directory (static export)
+          publish_branch: builds
