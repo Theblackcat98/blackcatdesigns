@@ -12,7 +12,7 @@
 
 # production
 /build
-
+/out
 
 # misc
 .DS_Store
@@ -38,8 +38,5 @@ next-env.d.ts
 /.clerk/
 .env.local
 
-# Workflow tracking files
-.workflow/
-claude-progress.txt
-feature_list.json
-
+Workflow tracking files
+.claude
