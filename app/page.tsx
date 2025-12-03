@@ -6,7 +6,7 @@ import { getAllPosts } from '@/lib/posts'
 import FadeIn, { StaggerContainer, StaggerItem } from '@/components/animations/FadeIn'
 import TextReveal from '@/components/animations/TextReveal'
 import { ArrowRight, Briefcase, Mail, FolderGit, FileText, Clock, MessageSquare } from 'lucide-react'
-import Hero3DWrapper from '@/components/Hero3DWrapper'
+import { DynamicScene } from '@/components/3d/DynamicScene'
 
 export default function Home() {
   const projects = getFeaturedProjects()
@@ -28,7 +28,7 @@ export default function Home() {
         {/* Noise texture removed for clarity */}
 
         <div className="absolute inset-0 z-0">
-          <Hero3DWrapper />
+          <DynamicScene />
         </div>
 
         <FadeIn className="relative z-10 max-w-4xl mx-auto px-6" delay={0.2}>
