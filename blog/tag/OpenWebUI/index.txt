@@ -1,0 +1,108 @@
+1:"$Sreact.fragment"
+2:I[4683,["177","static/chunks/app/layout-a57d9848ed6ef9dc.js"],"default"]
+3:I[7982,["177","static/chunks/app/layout-a57d9848ed6ef9dc.js"],"default"]
+4:I[9766,[],""]
+5:I[8924,[],""]
+6:I[2619,["113","static/chunks/app/blog/tag/%5Btag%5D/page-fb840d4a18a65afb.js"],""]
+7:I[979,["177","static/chunks/app/layout-a57d9848ed6ef9dc.js"],"default"]
+10:I[7150,[],""]
+:HL["/_next/static/css/95d4353b59116992.css","style"]
+0:{"P":null,"b":"kZQTnSg9sA78GRVhL3-_l","p":"","c":["","blog","tag","OpenWebUI",""],"i":false,"f":[[["",{"children":["blog",{"children":["tag",{"children":[["tag","OpenWebUI","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/95d4353b59116992.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"dark scroll-smooth","suppressHydrationWarning":true,"children":[["$","head",null,{"children":[["$","link",null,{"href":"https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@300,400,500,700,900&display=swap","rel":"stylesheet"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap","rel":"stylesheet"}]]}],["$","body",null,{"className":"flex flex-col min-h-screen overflow-x-hidden","style":{"backgroundColor":"var(--bg-primary)","color":"var(--text-primary)"},"children":[["$","$L2",null,{}],["$","div",null,{"className":"fixed inset-0 pointer-events-none z-50 opacity-[0.03] mix-blend-overlay","style":{"backgroundImage":"url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E\")"}}],["$","$L3",null,{}],["$","main",null,{"className":"max-w-4xl mx-auto px-6 pt-24 pb-12 flex-grow w-full","children":["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"flex flex-col items-center justify-center min-h-[400px] gap-6 text-center","children":[["$","h1",null,{"className":"text-6xl font-bold","style":{"color":"var(--text-primary)"},"children":"404"}],["$","h2",null,{"className":"text-2xl font-semibold","style":{"color":"var(--text-secondary)"},"children":"Page Not Found"}],["$","p",null,{"style":{"color":"var(--text-muted)"},"children":"The page you're looking for doesn't exist."}],["$","$L6",null,{"href":"/","className":"mt-4 px-6 py-3 font-medium transition-colors","style":{"backgroundColor":"var(--accent)","color":"var(--bg-primary)"},"children":"Back to Home"}]]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","footer",null,{"className":"border-t mt-12","style":{"borderColor":"var(--bg-border)","backgroundColor":"var(--bg-secondary)"},"children":["$","div",null,{"className":"max-w-4xl mx-auto px-6 py-12","children":[["$","div",null,{"className":"grid grid-cols-1 md:grid-cols-3 gap-8 mb-8","children":[["$","div",null,{"children":[["$","h3",null,{"className":"text-lg font-bold mb-2","style":{"color":"var(--accent)"},"children":"BlackCatDesigns"}],["$","p",null,{"className":"text-sm","style":{"color":"var(--text-muted)"},"children":"Cultivating Aesthetic Transformations"}]]}],["$","div",null,{"children":[["$","h4",null,{"className":"text-sm font-semibold mb-4","style":{"color":"var(--text-secondary)"},"children":"Navigation"}],["$","ul",null,{"className":"space-y-2 text-sm","children":[["$","li",null,{"children":["$","$L7",null,{"href":"/","children":"Home"}]}],["$","li",null,{"children":["$","$L7",null,{"href":"/projects","children":"Projects"}]}],["$","li",null,{"children":["$","$L7",null,{"href":"/blog","children":"Blog"}]}],["$","li",null,{"children":["$","$L7",null,{"href":"/about","children":"About"}]}],["$","li",null,{"children":["$","$L7",null,{"href":"/contact","children":"Contact"}]}]]}]]}],["$","div",null,{"children":[["$","h4",null,{"className":"text-sm font-semibold mb-4","style":{"color":"var(--text-secondary)"},"children":"Connect"}],["$","ul",null,{"className":"space-y-2 text-sm","children":[["$","li",null,{"children":["$","$L7",null,{"href":"https://github.com/theblackcat98","external":true,"children":["$","span",null,{"className":"flex items-center gap-2","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-github w-4 h-4","aria-hidden":"true","children":[["$","path","tonef",{"d":"M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"}],"$L8","$undefined"]}],"GitHub"]}]}]}],"$L9"]}]]}]]}],"$La"]}]}]]}]]}]]}],{"children":["blog","$Lb",{"children":["tag","$Lc",{"children":[["tag","OpenWebUI","d"],"$Ld",{"children":["__PAGE__","$Le",{},null,false]},null,false]},null,false]},null,false]},null,false],"$Lf",false]],"m":"$undefined","G":["$10",[]],"s":false,"S":true}
+12:I[4431,[],"OutletBoundary"]
+14:I[5278,[],"AsyncMetadataOutlet"]
+16:I[4431,[],"ViewportBoundary"]
+18:I[4431,[],"MetadataBoundary"]
+19:"$Sreact.suspense"
+8:["$","path","9comsn",{"d":"M9 18c-4.51 2-5-2-7-2"}]
+9:["$","li",null,{"children":["$","$L7",null,{"href":"https://instagram.com/theblackcat98","external":true,"children":["$","span",null,{"className":"flex items-center gap-2","children":[["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-instagram w-4 h-4","aria-hidden":"true","children":[["$","rect","2e1cvw",{"width":"20","height":"20","x":"2","y":"2","rx":"5","ry":"5"}],["$","path","9exkf1",{"d":"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"}],["$","line","r4j83e",{"x1":"17.5","x2":"17.51","y1":"6.5","y2":"6.5"}],"$undefined"]}],"Instagram"]}]}]}]
+a:["$","div",null,{"className":"border-t pt-6 text-center text-sm","style":{"borderColor":"var(--bg-border)","color":"var(--text-muted)"},"children":["$","p",null,{"children":"© 2025 BlackCatDesigns. All rights reserved."}]}]
+b:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+c:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+d:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+e:["$","$1","c",{"children":["$L11",null,["$","$L12",null,{"children":["$L13",["$","$L14",null,{"promise":"$@15"}]]}]]}]
+f:["$","$1","h",{"children":[null,[["$","$L16",null,{"children":"$L17"}],null],["$","$L18",null,{"children":["$","div",null,{"hidden":true,"children":["$","$19",null,{"fallback":null,"children":"$L1a"}]}]}]]}]
+1b:I[9467,["113","static/chunks/app/blog/tag/%5Btag%5D/page-fb840d4a18a65afb.js"],"default"]
+1c:T1fe2,
+# The Evolution of System Prompts for Deep Research Agents
+
+System prompts—those foundational instructions that guide AI behavior—have come a long way since the dawn of generative models. In 2025, they're no longer mere directives but intricate scaffolds enabling deep research agents to autonomously explore, synthesize, and verify knowledge. What started as basic commands in GPT-1 has evolved into dynamic, tool-integrated chains that power tools like OpenWebUI. Why does this matter? As AI agents tackle complex queries, well-crafted prompts determine whether outputs are insightful or illusory. This post unpacks the journey, key innovations, persistent hurdles, and ways to experiment forward.
+
+## From Zero-Shot Whispers to Chained Reasoning: A Historical Arc
+
+### The Dawn of Prompting in Early GPTs (2018–2021)
+OpenAI's GPT-1 in 2018 introduced the transformer decoder for text generation, but prompts were rudimentary: simple continuations like "Complete this sentence." GPT-2 (2019) added scale, handling zero-shot tasks—predicting outputs without examples—but outputs often wandered into incoherence. By GPT-3 (2020), few-shot prompting emerged: embedding examples in prompts to generalize tasks like translation or summarization. These were static, one-off instructions, limited by the model's inability to "think" step-by-step. Early users hacked creativity with tricks like role-playing ("You are a helpful assistant"), but hallucinations—fabricated facts—plagued results. What if prompts could guide reasoning, not just recall?
+
+### The Instruct Era and RLHF Refinement (2022–2024)
+ChatGPT's launch in late 2022, powered by GPT-3.5 with reinforcement learning from human feedback (RLHF), marked a pivot. System prompts now enforced alignment: "Respond concisely and truthfully." This reduced chaos, but complex tasks still faltered. Chain-of-thought (CoT) prompting in 2023—appending "Think step by step"—boosted arithmetic and logic by 20–50% on benchmarks. GPT-4 (2023) integrated multimodal inputs, with prompts specifying formats like JSON for structured outputs. Yet, as agents like Auto-GPT (2023) emerged, prompts needed recursion: self-generating sub-instructions for multi-step workflows. The era's lesson? Prompts must mimic human cognition to scale beyond chit-chat.
+
+### 2025: Agents Awaken with Structured Chains
+By mid-2025, GPT-5's release fused reasoning models (e.g., o3) with routers that auto-select fast or deep modes based on prompt complexity. Prompts now orchestrate agentic flows: decomposing queries into subtasks, invoking tools, and iterating outputs. In OpenWebUI, a open-source interface for local LLMs, prompts drive "Deep Research" functions—autonomous agents that plan queries, fetch via APIs, and synthesize cited reports. Unlike static RAG (retrieval-augmented generation), these chains enable long-horizon planning: parallel searches, memory pruning, and self-verification. The result? Agents that don't just answer—they investigate.
+
+## Core Building Blocks: Role, Tools, and Multi-Turn Flows
+
+### Role-Playing: Assigning Agency
+Effective prompts begin with persona: "You are an elite research analyst with deep domain knowledge in science and finance." This anchors behavior, reducing drift. In 2025 agents, roles extend to multi-agent systems: one for query decomposition, another for synthesis. Why? It mirrors human teams, distributing cognitive load.
+
+### Tool-Calling Syntax: From Text to Action
+Modern prompts embed XML-like syntax for tools: `<tool>web_search(query="AI ethics 2025")</tool>`. OpenWebUI's functions parse these for DuckDuckGo integration or code execution. GPT-5's router enhances this, dynamically chaining tools based on context. Prompts specify outputs: "Return JSON with {sources: [], summary: ''}."
+
+### Multi-Turn Flows: Chaining for Depth
+Prompt chaining breaks tasks into pipelines: output of one feeds the next. Example in OpenWebUI for "Use web search then summarize":
+
+1. **Step 1 Prompt**: "Decompose query '{user_query}' into 3 sub-queries. Output: JSON array."
+2. **Step 2 (Parallel)**: For each sub-query, "Search web: {sub_query}. Extract top 3 facts with URLs."
+3. **Step 3**: "Synthesize facts into a 200-word summary. Cite sources inline."
+
+This yields verifiable reports, as in GPT Researcher's STORM multi-agent setup. What happens if a chain loops? It risks inefficiency—hence, prompts cap iterations: "Max 5 turns or conclude."
+
+#### Pro Tip: Embed Error Handling
+Add: "If data is insufficient, flag and suggest refinements." This builds resilience.
+
+## Taming the Beast: Hallucination Mitigation Challenges
+
+Even advanced chains falter. Hallucinations—confident fabrications—affect 20–50% of outputs in knowledge tasks. In 2025, causes include training incentives rewarding fluency over truth, plus long-context dilution.
+
+Mitigations via prompts:
+- **Grounding**: "Base responses only on provided sources. If uncertain, say 'Insufficient data'."
+- **Self-Check**: CoT with verification: "After drafting, cross-reference facts against sources."
+- **Structured Outputs**: Enforce tables for claims: "| Claim | Source | Confidence |".
+
+| Technique | Example Prompt Snippet | Impact on Hallucinations |
+|-----------|-------------------------|--------------------------|
+| **Chain-of-Verification** | "Generate claim → Retrieve evidence → Revise if mismatch." | Reduces by 30% in RAG setups |
+| **Abstention Allowance** | "If <70% confident, abstain and explain." | Cuts overconfidence by 40% |
+| **Few-Shot Grounding** | Include verified examples: "Query: X → Facts: Y (cite Z)." | Boosts factual recall 25% |
+
+Yet challenges persist: Multilingual biases amplify in global agents, and compute costs soar for iterative checks. Why does this endure? LLMs optimize for coherence, not veracity—prompts alone can't fully rewrite incentives.
+
+## Community Wisdom: Best Practices from GitHub Repos
+
+Open-source thrives on shared prompts. Repos like dair-ai/Prompt-Engineering-Guide offer notebooks for CoT and RAG tuning. dontriskit/awesome-ai-system-prompts curates agentic examples, emphasizing domain rules: "For research: Prioritize peer-reviewed sources; format as Markdown with citations."
+
+Key practices:
+- **Modularity**: Use templates with variables: "Research {topic} using {tool}."
+- **Iteration**: Version prompts via diffs, testing on benchmarks.
+- **Safety**: Embed ethics: "Avoid bias; flag uncertainties."
+
+From x1xhlol/system-prompts-and-models-of-ai-tools, Claude Code's prompt stresses "Research-first: Verify before acting." Communities like Reddit's r/OpenWebUI share Deep Research tweaks, blending prompts with functions for verifiable outputs.
+
+## Dynamic Horizons: Experiments with Variables
+
+To future-proof, infuse variability. In OpenWebUI, custom variables turn prompts into templates: "{num_queries:3} sub-searches on {topic}, temperature {temp:0.7}." LangChain's expression language enables runtime injection: Pull schemas dynamically for graph RAG.
+
+**Experiment Ideas**:
+1. **A/B Testing**: Chain with/without variables; measure hallucination via self-scores.
+2. **Adaptive Temperature**: "If {complexity:high}, set temp=0.2 for precision."
+3. **Few-Shot Retrieval**: Dynamically fetch examples: "Retrieve 2 similar queries from DB."
+
+Try in OpenWebUI: Load a Deep Research model, vary {max_iterations:2–5}, and log synthesis quality. What emerges? Prompts that evolve with data, not just users.
+
+## Final Thoughts: Prompts as the Soul of Agency
+From GPT-1's raw predictions to 2025's autonomous researchers, system prompts have scripted AI's ascent—chaining thought, tools, and verification into something profoundly capable. Yet, as agents like those in OpenWebUI probe deeper, the real evolution lies in our stewardship: crafting prompts that prioritize truth over fluency. We've mitigated hallucinations, but can we instill curiosity that questions its own chains? Experiment boldly—your next variable might unlock the uncharted. What's one prompt tweak you'll test today?
+
+> *Inspired by the open-source ethos: Share your chains on GitHub, and let's build verifiable futures together.*
+11:["$","div",null,{"className":"space-y-8","children":[["$","nav",null,{"className":"flex items-center gap-2 text-sm","style":{"color":"var(--text-muted)"},"children":[["$","$L6",null,{"href":"/","className":"transition-colors","style":{"color":"var(--text-muted)"},"children":"Home"}],["$","span",null,{"children":"›"}],["$","$L6",null,{"href":"/blog","className":"transition-colors","style":{"color":"var(--text-muted)"},"children":"Blog"}],["$","span",null,{"children":"›"}],["$","span",null,{"style":{"color":"var(--accent)"},"children":["Tag: ","OpenWebUI"]}]]}],["$","div",null,{"children":[["$","h1",null,{"className":"text-4xl font-bold mb-2","style":{"color":"var(--text-primary)"},"children":["Posts tagged \"","OpenWebUI","\""]}],["$","p",null,{"style":{"color":"var(--text-secondary)"},"children":[1," post",""," found"]}]]}],["$","$L1b",null,{"posts":[{"slug":"system-prompts-of-the-past","content":"$1c","title":"The Evolution of System Prompts for Deep Research Agents","date":"2025-11-28","description":"From simple instructions in early GPTs to sophisticated chain-of-thought structures in 2025 tools like OpenWebUI, this post traces how prompts have transformed AI research capabilities. Explore historical shifts, key techniques, challenges, and forward-looking experiments.","author":"theblackcat","tags":["AI prompts","prompt engineering","deep research agents","LLM evolution","OpenWebUI","hallucination mitigation"],"published":true,"readingTime":6,"coverImage":""}],"allCategories":["AI prompts","LLM evolution","OpenWebUI","deep research agents","hallucination mitigation","prompt engineering"]}]]}]
+17:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+13:null
+15:{"metadata":[["$","title","0",{"children":"Posts tagged \"OpenWebUI\""}],["$","meta","1",{"name":"description","content":"All blog posts tagged with OpenWebUI"}]],"error":null,"digest":"$undefined"}
+1a:"$15:metadata"
