@@ -1,31 +1,25 @@
-# Build static Next.js portfolio and deploy to GitHub Pages
-name: Build Website
+# Build static Next.js portfolio and push to builds branch
+name: Build and Push Static Site
 
 on:
   push:
     branches: [ main, master ]
 
-# Set permissions for GitHub deployment
+# Set permissions for pushing to builds branch
 permissions:
   contents: write
-  deployments: write
-  pages: write
-  id-token: write
 
 jobs:
-  # Build job
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    outputs:
-      # Output build success for deploy job conditioning
-      build-success:
-        description: "Whether build completed successfully"
-        value: ${{ steps.build.outcome == 'success' }}
 
     steps:
       # Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          # Fetch full history for proper branch operations
+          fetch-depth: 0
 
       # Setup Node.js
       - name: Setup Node.js
@@ -51,57 +45,51 @@ jobs:
           echo "Current directory contents:"
           ls -la
           echo ""
-          echo "Checking if .next directory exists:"
-          if [ -d ".next" ]; then
-            echo "✅ .next directory found!"
-            echo "Contents of .next directory:"
-            ls -la .next/
+          echo "Checking for static build output:"
+          if [ -d "out" ]; then
+            echo "✅ out/ directory found!"
+            echo "Contents of out/ directory:"
+            ls -la out/
+            echo "Static pages generated:"
+            find out/ -name "*.html" | head -10
             echo ""
-            echo "Checking for static files:"
-            echo "out/ directory contents:"
-            ls -la out/ || echo "out/ directory not found"
+            echo "Total files in out/:"
+            find out/ -type f | wc -l
           else
-            echo "❌ .next directory not found!"
+            echo "❌ out/ directory not found!"
+            exit 1
           fi
 
-      # Upload build artifacts for deployment
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-files
-          path: |
-            .next/
-            app/
-            components/
-            lib/
-            public/
-            package.json
-            package-lock.json
-            next.config.js
-            tsconfig.json
-            tailwind.config.ts
-            tsconfig.tsbuildinfo
-          retention-days: 1
+      # Configure git for pushing to builds branch
+      - name: Configure git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
 
-  # Deploy job (runs only if build succeeded)
-  deploy:
-    needs: build
-    if: needs.build.outputs.build-success == 'true'
-    runs-on: ubuntu-latest
+      # Commit and push static files to builds branch
+      - name: Commit and push to builds branch
+        run: |
+          # Switch to builds branch (create if doesn't exist)
+          git checkout builds 2>/dev/null || git checkout -b builds
 
-    steps:
-      # Download build artifacts
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build-files
-          path: .
+          # Remove all files except .git and out/
+          find . -maxdepth 1 ! -name ".git" ! -name "out" ! -name "." -exec rm -rf {} \; 2>/dev/null || true
 
-      # Deploy static files to GitHub Pages
-      - name: Deploy static site to GitHub Pages
-        uses: peaceiris/actions/github-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
-          # Deploy from out directory (static export)
-          publish_branch: builds
+          # Move out/ contents to root
+          if [ -d "out" ]; then
+            mv out/* . 2>/dev/null || true
+            mv out/.[^.]* . 2>/dev/null || true
+            rmdir out 2>/dev/null || true
+          fi
+
+          # Add all static files
+          git add .
+
+          # Check if there are changes to commit
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Deploy static site - $(date '+%Y-%m-%d %H:%M:%S')"
+            git push origin builds
+            echo "✅ Static site deployed to builds branch"
+          fi

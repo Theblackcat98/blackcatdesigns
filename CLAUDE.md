@@ -62,8 +62,17 @@ npm run type-check   # TypeScript type checking
 ### Build & Deployment
 
 - **Static Export**: `npm run build` creates static files in `/out/`
-- **VPS Deployment**: Uses `deploy-scripts/simple-deploy.sh` with HTTPS cloning from `builds` branch
+- **GitHub Actions**: Automated build pipeline that generates static site and pushes to `builds` branch
+- **VPS Deployment**: Uses `deploy-scripts/simple-deploy.sh` which clones from `builds` branch and deploys to VPS
 - **Repository**: https://github.com/Theblackcat98/blackcatdesigns.git (HTTPS, not SSH to avoid key conflicts)
+
+#### Deployment Workflow
+
+1. **Push to main branch** → Triggers GitHub Actions workflow
+2. **GitHub Actions builds** static site using `npm run build` → generates `/out/` directory
+3. **Workflow pushes** static files to `builds` branch (no GitHub Pages deployment)
+4. **VPS script** (`deploy-scripts/simple-deploy.sh`) clones from `builds` branch and deploys to VPS
+5. **VPS serves** static files via cPanel Node.js application
 
 ### Important Development Notes
 
