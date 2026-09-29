@@ -39,6 +39,7 @@ export default function FloatingNav() {
             <NavLink href="/blog">Blog</NavLink>
             <NavLink href="/about">About</NavLink>
             <NavLink href="/contact">Contact</NavLink>
+            <NavLink href="/mermaid-gallery">Mermaid Gallery</NavLink>
           </div>
         </div>
 
@@ -64,6 +65,7 @@ export default function FloatingNav() {
           <NavLink href="/blog" onClick={closeMobileMenu}>Blog</NavLink>
           <NavLink href="/about" onClick={closeMobileMenu}>About</NavLink>
           <NavLink href="/contact" onClick={closeMobileMenu}>Contact</NavLink>
+          <NavLink href="/mermaid-gallery" onClick={closeMobileMenu}>Mermaid Gallery</NavLink>
         </div>
       </div>
     </header>
