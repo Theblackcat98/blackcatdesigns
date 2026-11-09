@@ -232,49 +232,6 @@ These provide incremental value but are lower priority than Phases 1-2.
 
 ---
 
-## Phase 4: Accessibility (Ongoing)
-
-Accessibility should be built in from the start, not added later.
-
-### 4.1 Skip-to-Content Link
-- **What:** Hidden link that appears on tab focus, jumps to main content
-- **Why:** Helps keyboard users skip navigation
-- **Implementation:**
-  - Add link at top of layout.tsx
-  - Style with absolute positioning, show on focus
-- **Effort:** 15 min
-- **Status:** [ ] Not started
-
-### 4.2 Heading Structure Audit
-- **What:** Ensure proper h1 → h2 → h3 hierarchy (no skipping)
-- **Why:** Required for accessibility and SEO
-- **Implementation:**
-  - Audit all pages, fix heading levels
-  - Ensure one h1 per page
-- **Effort:** 20 min
-- **Status:** [ ] Not started
-
-### 4.3 Color Contrast Check
-- **What:** Verify all text meets WCAG AA (4.5:1) or AAA (7:1) contrast
-- **Why:** Required for accessible sites; required by law in some places
-- **Implementation:**
-  - Use WebAIM contrast checker or axe DevTools
-  - Test all color combinations
-  - May need to adjust CSS variables
-- **Effort:** 30 min
-- **Status:** [ ] Not started
-
-### 4.4 Alt Text Audit
-- **What:** Ensure all images have descriptive alt text
-- **Why:** Required for screen readers and accessibility
-- **Implementation:**
-  - Check post images, project images, etc.
-  - Write descriptive alt text (not just "image")
-- **Effort:** Varies
-- **Status:** [ ] Not started
-
----
-
 ## Implementation Priority Matrix
 
 **If you only do 5 things:**
